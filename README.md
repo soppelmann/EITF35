@@ -42,6 +42,12 @@ for vhdl 2008 use
 `ghdl -a --std=08 code.vhd`
 etc
 
+for example for Lab1
+
+`ghdl -a *.vhd`
+`ghdl -r sequence_detector_tb --vcd=wave.vcd`
+`gtkwave wave.vcd`
+
 then run the f4pga toolchain
 
 f4pga toolchain demands that the top module in the hdl file is declared as 
