@@ -45,14 +45,37 @@ begin
     case current_state is
       when s_init =>
         if data_serial = '0' then
-          next_state <= s_init;         -- is this line necessary?
+          next_state <= s_init;
         else
           next_state <= s_1;
         end if;
       when s_1 =>
-    --?
-    --?
-    --?
+        if data_serial = '1' then
+          next_state <= s_11;
+        else
+          next_state <= s_init;
+        end if;
+      when s_11 =>
+        if data_serial = '0' then
+          next_state <= s_110;
+        else
+          next_state <= s_11;
+        end if;
+      when s_110 =>
+        if data_serial = '1' then
+          data_out   <= '1';
+          next_state <= s_1101;
+        else
+          next_state <= s_init;
+        end if;
+      when s_1101 =>
+        if data_serial = '1' then
+          next_state <= s_11;
+        else
+          next_state <= s_init;
+        end if;
+      when others =>
+        report("error_1");
     end case;
   end process;
 
