@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 entity sequence_detector_mealy is
   port (
@@ -35,7 +36,7 @@ begin
 
   -- purpose: Implements the next_state logic as well as the output logic
   -- type : combinational
-  combinational : process ()            -- fill out the sensitivity list
+  combinational : process (current_state, data_serial) -- fill out the sensitivity list
   begin
     -- set default value
     next_state <= current_state;
