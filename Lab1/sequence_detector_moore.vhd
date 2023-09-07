@@ -16,7 +16,7 @@ architecture behavioural of sequence_detector_moore is
 
 
   -- Define a enumeration type for the states
-  type state_type is (s_init, s_1, s_11, s_111, s_1111);
+  type state_type is (s_init, s_1, s_11, s_110, s_1101);
 
   -- Define the needed internal signals
   signal current_state, next_state : state_type;
@@ -36,7 +36,7 @@ begin
 
   -- purpose: Implements the next_state logic as well as the output logic
   -- type : combinational
-  combinational : process (current_state, data_serial) -- fill out the sensitivity list
+  combinational : process (current_state, data_serial)  -- fill out the sensitivity list
   begin
     -- set default value
     next_state <= current_state;
@@ -45,14 +45,37 @@ begin
     case current_state is
       when s_init =>
         if data_serial = '0' then
-          next_state <= s_init;         -- is this line necessary?
+          next_state <= s_init;
         else
           next_state <= s_1;
         end if;
       when s_1 =>
-    --?
-    --?
-    --?
+        if data_serial = '1' then
+          next_state <= s_11;
+        else
+          next_state <= s_init;
+        end if;
+      when s_11 =>
+        if data_serial = '0' then
+          next_state <= s_110;
+        else
+          next_state <= s_11;
+        end if;
+      when s_110 =>
+        if data_serial = '1' then
+          next_state <= s_1101;
+        else
+          next_state <= s_init;
+        end if;
+      when s_1101 =>
+        if data_serial = '1' then
+          next_state <= s_11;
+        else
+          next_state <= s_init;
+        end if;
+        data_out <= '1';
+      when others =>
+        report("error_1");
     end case;
   end process;
 

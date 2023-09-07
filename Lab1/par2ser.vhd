@@ -45,7 +45,7 @@ begin
         next_sample_shifter <= current_sample_shifter;
 
         -- write the code for parallel to serial conversion
-        if current_counter = 0 then
+        if current_counter = "11" then
             next_sample_shifter <= data_parallel;
         else
             next_sample_shifter <= '0' & current_sample_shifter(3 downto 1);
