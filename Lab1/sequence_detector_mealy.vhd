@@ -16,7 +16,7 @@ architecture behavioural of sequence_detector_mealy is
 
 
   -- Define a enumeration type for the states
-  type state_type is (s_init, s_1, s_11, s_110, s_1101);
+  type state_type is (s_init, s_1, s_11, s_110);
 
   -- Define the needed internal signals
   signal current_state, next_state : state_type;
@@ -64,18 +64,11 @@ begin
       when s_110 =>
         if data_serial = '1' then
           data_out   <= '1';
-          next_state <= s_1101;
+          next_state <= s_1;
         else
           next_state <= s_init;
         end if;
-      when s_1101 =>
-        if data_serial = '1' then
-          next_state <= s_11;
-        else
-          next_state <= s_init;
-        end if;
-      when others =>
-        report("error_1");
+
     end case;
   end process;
 

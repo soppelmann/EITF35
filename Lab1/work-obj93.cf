@@ -1,16 +1,16 @@
 v 4
-file . "stimulus_generator.vhd" "b4d0aeeb8e9e2085a7369d0e705ea3f7e86dcbee" "20230907125212.548":
-  entity stimulus_generator at 1( 0) + 0 on 57;
-  architecture behavioral of stimulus_generator at 22( 412) + 0 on 58;
-file . "sequence_detector_tb.vhd" "f0d5ec432c87591a174fbf9d649064e072aad0d1" "20230907125212.544":
-  entity sequence_detector_tb at 1( 0) + 0 on 55;
-  architecture behavioural of sequence_detector_tb at 10( 130) + 0 on 56;
-file . "sequence_detector_moore.vhd" "3bc496f9b73577b78259de0f5eb6af6ba528815b" "20230907125212.541":
-  entity sequence_detector_moore at 1( 0) + 0 on 53;
-  architecture behavioural of sequence_detector_moore at 15( 314) + 0 on 54;
-file . "par2ser.vhd" "5124d517009a3e4d5252203a906bd9ec03f1e97a" "20230907125212.537":
-  entity par2ser at 1( 0) + 0 on 49;
-  architecture behavioural of par2ser at 14( 269) + 0 on 50;
-file . "sequence_detector_mealy.vhd" "f9c5617f1197c2d32b1fc76565376c24ca834309" "20230907125212.539":
-  entity sequence_detector_mealy at 1( 0) + 0 on 51;
-  architecture behavioural of sequence_detector_mealy at 15( 314) + 0 on 52;
+file . "stimulus_generator.vhd" "b4d0aeeb8e9e2085a7369d0e705ea3f7e86dcbee" "20230908094222.136":
+  entity stimulus_generator at 1( 0) + 0 on 97;
+  architecture behavioral of stimulus_generator at 22( 412) + 0 on 98;
+file . "sequence_detector_tb.vhd" "f0d5ec432c87591a174fbf9d649064e072aad0d1" "20230908094222.132":
+  entity sequence_detector_tb at 1( 0) + 0 on 95;
+  architecture behavioural of sequence_detector_tb at 10( 130) + 0 on 96;
+file . "sequence_detector_moore.vhd" "3bc496f9b73577b78259de0f5eb6af6ba528815b" "20230908094222.128":
+  entity sequence_detector_moore at 1( 0) + 0 on 93;
+  architecture behavioural of sequence_detector_moore at 15( 314) + 0 on 94;
+file . "par2ser.vhd" "5124d517009a3e4d5252203a906bd9ec03f1e97a" "20230908094222.124":
+  entity par2ser at 1( 0) + 0 on 89;
+  architecture behavioural of par2ser at 14( 269) + 0 on 90;
+file . "sequence_detector_mealy.vhd" "84a262847d2c45822165758db2bbe4b067ab3938" "20230908094222.126":
+  entity sequence_detector_mealy at 1( 0) + 0 on 91;
+  architecture behavioural of sequence_detector_mealy at 15( 314) + 0 on 92;
