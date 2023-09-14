@@ -7,8 +7,8 @@ module sync_keyboard
 
 
   reg data_1, clk_1;
-
-  always @ (posedge clk or posedge kb_clk)
+//maybe add kb_clk, chatgpt suggested
+  always @ (posedge clk)
   begin
     data_1 <= kb_data;
     kb_data_sync <= data_1;

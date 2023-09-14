@@ -29,8 +29,11 @@ module tb_pkg;
    initial // initial block executes only once
      begin
 
-        $dumpfile("test.vcd");
-        $dumpvars(0,tb_pkg);
+
+        // these need to be commented out for schematics
+        //$dumpfile("test.vcd");
+        //$dumpvars(0,tb_pkg);
+
         // start sending data
         // values for a and b
         kb_data = 0;
@@ -40,7 +43,7 @@ module tb_pkg;
         rst <= 0;
 
         #period
-        kb_data = 1;
+          kb_data = 1;
 
         #period;
 
@@ -62,6 +65,6 @@ module tb_pkg;
         kb_data = 0;
 
 
-        $finish();
+        //$finish();
      end // initial begin
 endmodule
