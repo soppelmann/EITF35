@@ -3,12 +3,10 @@ module convert_scancode
    input  rst,
    input  edge_found,
    input  serial_data,
-   output valid_scan_code,
-   output [7:0] scan_code_out);
+   output reg valid_scan_code,
+   output reg [7:0] scan_code_out);
 
    reg [9:0] scan_code;
-   reg [7:0] scan_code_out;
-   reg valid_scan_code;
 
    reg [3:0] current_counter, next_counter;
 

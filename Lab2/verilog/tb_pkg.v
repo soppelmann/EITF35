@@ -19,9 +19,6 @@ module tb_pkg;
                      );
 
 
-
-
-
    // duration for each bit = 20 * timescale = 20 * 1 ns  = 20ns
    localparam period = 40;
 
