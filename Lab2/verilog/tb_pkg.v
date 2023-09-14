@@ -30,7 +30,7 @@ module tb_pkg;
      begin
 
         $dumpfile("test.vcd");
-        $dumpvars(0,kb_data);
+        $dumpvars(0,tb_pkg);
         // start sending data
         // values for a and b
         kb_data = 0;
