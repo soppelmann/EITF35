@@ -4,10 +4,15 @@ module edge_detector
    input  kb_clk_sync,
    output edge_found);
 
+  reg kb_clk_in;
+  reg edge_found;
 
-  localparam n1_o = 1'bZ;
-  assign edge_found = n1_o;
-
-
-
+  always @(posedge clk, )
+  if(~rst) begin 
+    kb_clk_in <= 0;
+  end else begin
+    kb_clk_in <= kb_clk_sync;
+    edge_found <= (!kb_clk_sync & kb_clk_in);
+  end
+  
 endmodule

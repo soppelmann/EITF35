@@ -18,4 +18,3 @@ module sync_keyboard
   end
 
 endmodule
-
