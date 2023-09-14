@@ -4,6 +4,20 @@ We utilize the open souce toolchain from f4pga.
 If writing Verilog or SystemVerilog you can simply use the included examples.
 https://github.com/chipsalliance/f4pga-examples/tree/main/xc7/counter_test
 
+to run simulations do the following
+
+```bash
+iverilog -o tb_pkg *.v
+```
+```bash
+vvp tb_pkg
+```
+```bash
+gtkwave test.vcd
+```
+
+
+
 VHDL is not explicitly supported by f4pga but here is a quick workaround, ymmv.
 
 # run f4pga container
