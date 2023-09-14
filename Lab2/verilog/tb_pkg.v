@@ -8,6 +8,20 @@ module tb_pkg;
    wire [7:0] num = 0;
    wire [3:0] seg_en = 0;
 
+   keyboard_top DUT (
+                     .clk(clk),
+                     .rst(rst),
+                     .kb_data(kb_data),
+                     .sc(sc),
+                     .num(num),
+                     .seg_en(seg_en),
+                     .kb_clk(kb_clk)
+                     );
+
+
+
+
+
    // duration for each bit = 20 * timescale = 20 * 1 ns  = 20ns
    localparam period = 40;
 
@@ -15,25 +29,23 @@ module tb_pkg;
 
    always #20 kb_clk <= !kb_clk;
 
-
-
    initial // initial block executes only once
      begin
+        // start sending data
         // values for a and b
-        a = 0;
-        b = 0;
+        kb_data = 0;
+
         #period; // wait for period
+        kb_data = 0;
 
-        a = 0;
-        b = 1;
         #period;
 
-        a = 1;
-        b = 0;
+        kb_data = 0;
+
         #period;
 
-        a = 1;
-        b = 1;
+        kb_data = 0;
+
         #period;
      end // initial begin
 endmodule
