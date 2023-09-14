@@ -3,8 +3,8 @@ module keyboard_ctrl
  input            rst,
  input            valid_code,
  input [7:0]      scan_code_in,
- output reg reg [7:0] code_to_display,
- output reg reg [3:0] seg_en);
+ output reg[7:0] code_to_display,
+ output reg [3:0] seg_en);
 
 reg [2:0] state, next_state;
 reg [31:0] scanCodes;
@@ -20,7 +20,6 @@ reg [17:0] counter;
         scanCodes <= 0;
         counter <= 0;
         seg_counter <= 0;
-        seg_curr <= 0;
      end else if (counter == "11111111111111110")begin
         counter <= 0;
         seg_counter <= seg_counter + 1;
