@@ -4,7 +4,10 @@ module edge_detector
    input  kb_clk_sync,
    output edge_found);
 
+
   localparam n1_o = 1'bZ;
   assign edge_found = n1_o;
+
+
 
 endmodule

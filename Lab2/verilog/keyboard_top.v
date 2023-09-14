@@ -21,6 +21,7 @@ module keyboard_top
 
 
    // connect all ports here
+   // module followed by DUT name
    sync_keyboard sync_keyboard_inst (
                                      .clk(clk),
                                      .kb_clk(kb_clk),
@@ -28,10 +29,6 @@ module keyboard_top
                                      .kb_clk_sync(kb_clk_sync),
                                      .kb_data_sync(kb_data_sync));
    /* keyboard_top.vhd:113:5  */
-
-
-
-   // module followed by DUT name
    edge_detector edge_detector_inst (
                                      .clk(clk),
                                      .rst(rst),
