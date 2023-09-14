@@ -34,8 +34,12 @@ module tb_pkg;
         // start sending data
         // values for a and b
         kb_data = 0;
+        rst <= 1;
 
         #period; // wait for period
+        rst <= 0;
+
+        #period
         kb_data = 1;
 
         #period;
@@ -47,6 +51,15 @@ module tb_pkg;
         kb_data = 0;
 
         #period;
+        kb_data = 1;
+
+        #period;
+
+        kb_data = 0;
+
+        #period;
+
+        kb_data = 0;
 
 
         $finish();

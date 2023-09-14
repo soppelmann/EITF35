@@ -20,6 +20,7 @@ module keyboard_ctrl
         scanCodes <= 0;
         counter <= 0;
         seg_counter <= 0;
+        seg_curr <= 0;
      end else if (counter == "11111111111111110")begin
         counter <= 0;
         seg_counter <= seg_counter + 1;
