@@ -1,5 +1,5 @@
 $date
-	Thu Sep 14 17:35:18 2023
+	Thu Sep 14 18:14:01 2023
 $end
 $version
 	Icarus Verilog
@@ -8,18 +8,223 @@ $timescale
 	1s
 $end
 $scope module tb_pkg $end
-$var reg 1 ! kb_data $end
+$var wire 8 ! num [7:0] $end
+$var wire 8 " sc [7:0] $end
+$var wire 4 # seg_en [3:0] $end
+$var parameter 32 $ period $end
+$var reg 1 % clk $end
+$var reg 1 & kb_clk $end
+$var reg 1 ' kb_data $end
+$var reg 1 ( rst $end
+$scope module DUT $end
+$var wire 4 ) binary_num [3:0] $end
+$var wire 1 % clk $end
+$var wire 1 & kb_clk $end
+$var wire 1 ' kb_data $end
+$var wire 8 * num [7:0] $end
+$var wire 1 ( rst $end
+$var wire 8 + sc [7:0] $end
+$var wire 4 , seg_en [3:0] $end
+$var wire 1 - valid_scan_code $end
+$var wire 8 . sev_seg [7:0] $end
+$var wire 8 / scan_code_out [7:0] $end
+$var wire 1 0 kb_data_sync $end
+$var wire 1 1 kb_clk_sync $end
+$var wire 1 2 edge_found $end
+$var wire 8 3 code_to_display [7:0] $end
+$var wire 4 4 binary_out [3:0] $end
+$scope module binary_to_sg_inst $end
+$var wire 4 5 binary_in [3:0] $end
+$var reg 8 6 sev_seg [7:0] $end
+$upscope $end
+$scope module convert_scancode_inst $end
+$var wire 1 % clk $end
+$var wire 1 ( rst $end
+$var wire 1 0 serial_data $end
+$var wire 1 2 edge_found $end
+$var reg 4 7 current_counter [3:0] $end
+$var reg 4 8 next_counter [3:0] $end
+$var reg 10 9 scan_code [9:0] $end
+$var reg 8 : scan_code_out [7:0] $end
+$var reg 1 - valid_scan_code $end
+$upscope $end
+$scope module convert_to_binary_inst $end
+$var wire 8 ; scan_code_in [7:0] $end
+$var reg 4 < binary_out [3:0] $end
+$upscope $end
+$scope module edge_detector_inst $end
+$var wire 1 % clk $end
+$var wire 1 ( rst $end
+$var wire 1 1 kb_clk_sync $end
+$var reg 1 2 edge_found $end
+$var reg 1 = kb_clk_in $end
+$upscope $end
+$scope module keyboard_ctrl_inst $end
+$var wire 1 % clk $end
+$var wire 1 ( rst $end
+$var wire 8 > scan_code_in [7:0] $end
+$var wire 1 - valid_code $end
+$var reg 8 ? code_to_display [7:0] $end
+$var reg 18 @ counter [17:0] $end
+$var reg 3 A next_state [2:0] $end
+$var reg 32 B scanCodes [31:0] $end
+$var reg 2 C seg_counter [1:0] $end
+$var reg 4 D seg_curr [3:0] $end
+$var reg 4 E seg_en [3:0] $end
+$var reg 3 F state [2:0] $end
+$upscope $end
+$scope module sync_keyboard_inst $end
+$var wire 1 % clk $end
+$var wire 1 & kb_clk $end
+$var wire 1 ' kb_data $end
+$var reg 1 G clk_1 $end
+$var reg 1 H data_1 $end
+$var reg 1 1 kb_clk_sync $end
+$var reg 1 0 kb_data_sync $end
+$upscope $end
+$upscope $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
+b101000 $
 $end
 #0
 $dumpvars
-0!
+xH
+xG
+b0 F
+b0 E
+bx D
+b0 C
+b0 B
+b0 A
+b0 @
+b0 ?
+b0 >
+x=
+b1111 <
+b0 ;
+b0 :
+bx 9
+b0 8
+b0 7
+b10000110 6
+bz 5
+b1111 4
+b0 3
+x2
+x1
+x0
+b0 /
+b10000110 .
+0-
+b0 ,
+b0 +
+b0 *
+bz )
+0(
+0'
+0&
+0%
+b0 #
+b0 "
+b0 !
 $end
+#5
+0=
+0G
+0H
+1%
+#10
+0%
+#15
+01
+00
+1%
+#20
+1G
+0%
+1&
+#25
+11
+1%
+#30
+0%
+#35
+1%
 #40
-1!
+0%
+0&
+1'
+#45
+0G
+1H
+1%
+#50
+0%
+#55
+01
+10
+1%
+#60
+1G
+0%
+1&
+#65
+11
+1%
+#70
+0%
+#75
+1%
 #80
-0!
+0%
+0&
+0'
+#85
+0G
+0H
+1%
+#90
+0%
+#95
+01
+00
+1%
+#100
+1G
+0%
+1&
+#105
+11
+1%
+#110
+0%
+#115
+1%
+#120
+0%
+0&
+#125
+0G
+1%
+#130
+0%
+#135
+01
+1%
+#140
+1G
+0%
+1&
+#145
+11
+1%
+#150
+0%
+#155
+1%
 #160
+0%
+0&
