@@ -1,0 +1,25 @@
+$date
+	Thu Sep 14 17:35:18 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb_pkg $end
+$var reg 1 ! kb_data $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+0!
+$end
+#40
+1!
+#80
+0!
+#160

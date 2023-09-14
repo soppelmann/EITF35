@@ -28,12 +28,15 @@ module tb_pkg;
 
    initial // initial block executes only once
      begin
+
+        $dumpfile("test.vcd");
+        $dumpvars(0,kb_data);
         // start sending data
         // values for a and b
         kb_data = 0;
 
         #period; // wait for period
-        kb_data = 0;
+        kb_data = 1;
 
         #period;
 
@@ -44,5 +47,8 @@ module tb_pkg;
         kb_data = 0;
 
         #period;
+
+
+        $finish();
      end // initial begin
 endmodule
