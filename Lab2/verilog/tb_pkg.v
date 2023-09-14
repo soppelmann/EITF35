@@ -1,7 +1,7 @@
 module tb_pkg;
 
    reg clk = 0;
-   reg rst = 0;
+   reg rst = 1;
    reg kb_data = 1;
    reg kb_clk = 0;
    wire [7:0] sc = 0;
@@ -20,7 +20,7 @@ module tb_pkg;
 
 
    // duration for each bit = 20 * timescale = 20 * 1 ns  = 20ns
-   localparam period = 40;
+   localparam period = 1000;
 
    always #5 clk <= !clk;
 

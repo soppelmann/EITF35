@@ -11,7 +11,7 @@ module edge_detector
     kb_clk_in <= 0;
   end else begin
     kb_clk_in <= kb_clk_sync;
-    edge_found <= (!kb_clk_sync & kb_clk_in);
+    edge_found <= (~kb_clk_sync & kb_clk_in);
   end
 
 endmodule

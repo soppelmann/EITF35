@@ -3,15 +3,15 @@ module keyboard_ctrl
  input            rst,
  input            valid_code,
  input [7:0]      scan_code_in,
- output reg [7:0] code_to_display,
- output reg [3:0] seg_en);
+ output reg reg [7:0] code_to_display,
+ output reg reg [3:0] seg_en);
 
-   reg [2:0] state, next_state;
-   reg [31:0] scanCodes;
-   reg [1:0]  seg_counter;
-   reg [17:0] counter;
-   reg [3:0]  seg_curr;
-
+reg [2:0] state, next_state;
+reg [31:0] scanCodes;
+reg [1:0] seg_counter;
+reg [17:0] counter;
+//reg [3:0] seg_en;
+//reg [7:0] code_to_display;
 
    always @ (posedge clk, negedge rst)
      if (~rst) begin
@@ -29,49 +29,47 @@ module keyboard_ctrl
         state <= next_state;
      end
 
-   always @(state)
-     if (valid_code)begin
-        case(state)
-          0:
-            if(scan_code_in == "11110000")begin
-               next_state <= 1;
-               seg_curr <= "1110";
-               //do nothin
-            end else begin
-               //do nothin
-            end
-          1:
-            if(scan_code_in == "11110000") begin
-               next_state <= 2;
-               scanCodes = scanCodes << 8;
-               seg_curr <= "1100";
-            end else if(scanCodes[31:24] == "00000000")begin
-               scanCodes[31:24] <= scan_code_in;
-            end
-          2: if(scan_code_in == "11110000") begin
-             next_state <= 3;
-             scanCodes = scanCodes << 8;
-             seg_curr <= "1000";
-          end else if(scanCodes[31:24] == "00000000")begin
-             scanCodes[31:24] <= scan_code_in;
-          end
-          3: if(scan_code_in == "11110000") begin
-             next_state <= 4;
-             scanCodes = scanCodes << 8;
-             seg_curr <= "0000";
-          end else if(scanCodes[31:24] == "00000000")begin
-             scanCodes[31:24] <= scan_code_in;
-          end
-          4: if(scan_code_in == "11110000") begin
-             scanCodes = scanCodes << 8;
-          end else if(scanCodes[31:24] == "00000000")begin
-             scanCodes[31:24] <= scan_code_in;
-          end
-          default:begin
-             //do nothing
-          end
-        endcase
-     end
+always @(state)
+if (valid_code)begin
+case(state)
+  0: 
+    if(scan_code_in == "11110000")begin
+      next_state <= 1;
+      
+    end else begin
+      //do nothin
+    end
+  1: 
+    if(scan_code_in == "11110000") begin
+      next_state <= 2;
+      scanCodes = scanCodes << 8;
+      
+    end else if(scanCodes[31:24] == "00000000")begin 
+      scanCodes[31:24] <= scan_code_in;
+    end
+  2: if(scan_code_in == "11110000") begin
+      next_state <= 3;
+      scanCodes = scanCodes << 8;
+      
+      end else if(scanCodes[31:24] == "00000000")begin 
+      scanCodes[31:24] <= scan_code_in;
+      end
+  3: if(scan_code_in == "11110000") begin
+      next_state <= 4;
+      scanCodes = scanCodes << 8;
+      end else if(scanCodes[31:24] == "00000000")begin 
+      scanCodes[31:24] <= scan_code_in;
+      end
+  4: if(scan_code_in == "11110000") begin
+      scanCodes = scanCodes << 8;
+      end else if(scanCodes[31:24] == "00000000")begin 
+      scanCodes[31:24] <= scan_code_in;
+      end
+  default:begin
+    //do nothing
+  end
+endcase
+end 
 
    always @ (seg_counter)
      begin
