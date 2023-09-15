@@ -41,11 +41,13 @@ module tb_pkg;
         rst <= 1;
 
         //0xF0, 11 bit long
-         #period;
+        #period;
 
+        //SB
         kb_data = 0;
         #period;
-         //payload
+
+         //payload for BC
         kb_data = 1;
         #period;
 
@@ -55,7 +57,7 @@ module tb_pkg;
 
         kb_data = 1;
 
-        
+
 
         #period
           kb_data = 1;
@@ -77,6 +79,7 @@ module tb_pkg;
         kb_data = 0;
 
         #period;
+
          //parity and stop
         kb_data = 0;
         #period;
@@ -87,8 +90,10 @@ module tb_pkg;
         // 0x16, 11 bit long
         #period;
 
+        //SB
         kb_data = 0;
         #period;
+
          //payload
         kb_data = 0;
         #period;
@@ -99,7 +104,7 @@ module tb_pkg;
 
         kb_data = 0;
 
-        
+
 
         #period
           kb_data = 1;
@@ -126,6 +131,7 @@ module tb_pkg;
         #period;
 
         kb_data = 0;
+
 
         //0xF0, 11 bit long
          #period;
@@ -142,7 +148,7 @@ module tb_pkg;
 
         kb_data = 1;
 
-        
+
 
         #period
           kb_data = 1;
