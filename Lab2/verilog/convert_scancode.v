@@ -6,7 +6,7 @@ module convert_scancode
    output reg valid_scan_code,
    output reg [7:0] scan_code_out);
 
-   reg [9:0] scan_code;
+   reg [9:0] scan_code = 0;
 
    reg [3:0] counter;
 
