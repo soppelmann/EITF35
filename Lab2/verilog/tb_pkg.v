@@ -36,14 +36,34 @@ module tb_pkg;
 
         // start sending data
         // values for a and b
-        kb_data = 0;
-        rst <= 0;
 
         #period; // wait for period
         rst <= 1;
 
+        // 0x16, 11 bit long
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+
+        //payload
+
         #period
-        kb_data = 1;
+          kb_data = 1;
 
         #period;
 
@@ -60,12 +80,34 @@ module tb_pkg;
 
         kb_data = 0;
 
+        //0x1E
         #period;
 
-        kb_data = 1;
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
 
         #period
-        kb_data = 1;
+          //payload
+
+          kb_data = 1;
+
+        #period
+
+          kb_data = 1;
 
         #period;
 
