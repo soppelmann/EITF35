@@ -2,7 +2,6 @@ module binary_to_sg
   (input  [3:0] binary_in,
    output reg [7:0] sev_seg);
 
-
    always @ (binary_in) begin
       case(binary_in)
         4'b0000 : sev_seg = 8'b11000000; //0

@@ -2,6 +2,11 @@ module convert_to_binary
   (input [7:0] scan_code_in,
    output reg [3:0] binary_out);
 
+ //  initial
+ //    begin
+ //       binary_out <= 'bz;
+ //    end
+
 
   /* convert_to_binary.vhd:16:17  */
   always @ (scan_code_in) begin

@@ -61,7 +61,7 @@ module keyboard_top
    /* keyboard_top.vhd:148:5  */
    convert_to_binary convert_to_binary_inst (
                                              .scan_code_in(code_to_display),
-                                             .binary_out(binary_out));
+                                             .binary_out(binary_in));
 
 
    /* keyboard_top.vhd:155:5  */
