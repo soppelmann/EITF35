@@ -43,7 +43,7 @@ module tb_pkg;
         rst <= 1;
 
         #period
-          kb_data = 1;
+        kb_data = 1;
 
         #period;
 
@@ -51,13 +51,31 @@ module tb_pkg;
 
         #period;
 
-        kb_data = 0;
+        kb_data = 1;
 
         #period;
         kb_data = 1;
 
         #period;
 
+        kb_data = 0;
+
+        #period;
+
+        kb_data = 1;
+
+        #period
+        kb_data = 1;
+
+        #period;
+
+        kb_data = 1;
+
+        #period;
+
+        kb_data = 1;
+
+        #period;
         kb_data = 0;
 
         #period;
