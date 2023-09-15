@@ -21,6 +21,7 @@ reg [17:0] counter;
         counter <= 0;
         seg_counter <= 0;
         code_to_display <= scanCodes[31:24];
+        seg_en <= "1111";
      end else if (counter == 4)begin
         counter <= 0;
         seg_counter <= seg_counter + 1;
