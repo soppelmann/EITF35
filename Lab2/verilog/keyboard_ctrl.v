@@ -14,11 +14,14 @@ module keyboard_ctrl
    //reg [3:0] seg_en;
    //reg [7:0] code_to_display;
 
+   // maybe add initial begin with rst to avoid latches
+   // comment out not popular lines for a somewhat working keyboard
+
    always @ (posedge clk, negedge rst)
      if (~rst) begin
         state <= 0;
-        next_state <= 0;
-        scanCodes <= 0;
+        next_state <= 0; //not popular
+        scanCodes <= 0; //not popular
         counter <= 0;
         seg_counter <= 0;
         code_to_display <= scanCodes[31:24]; //vivado hates this line
@@ -34,7 +37,7 @@ module keyboard_ctrl
         state <= next_state;
      end
 
-   always @(state, counter, valid_code)
+   always @(state, counter, valid_code, valid_counter)
      begin
         if (valid_code)begin
            case(state)
