@@ -40,27 +40,66 @@ module tb_pkg;
         #period; // wait for period
         rst <= 1;
 
+        //0xF0, 11 bit long
+         #period;
+
+        kb_data = 0;
+        #period;
+         //payload
+        kb_data = 1;
+        #period;
+
+
+        kb_data = 1;
+        #period;
+
+        kb_data = 1;
+
+        
+
+        #period
+          kb_data = 1;
+
+        #period;
+
+        kb_data = 0;
+
+        #period;
+
+        kb_data = 0;
+
+
+        #period;
+        kb_data = 0;
+
+        #period;
+
+        kb_data = 0;
+
+        #period;
+         //parity and stop
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+
+
         // 0x16, 11 bit long
         #period;
 
         kb_data = 0;
         #period;
-
+         //payload
         kb_data = 0;
         #period;
 
-        kb_data = 0;
-        #period;
-
-        kb_data = 0;
-        #period;
 
         kb_data = 0;
         #period;
 
         kb_data = 0;
 
-        //payload
+        
 
         #period
           kb_data = 1;
@@ -73,9 +112,60 @@ module tb_pkg;
 
         kb_data = 1;
 
+
         #period;
         kb_data = 1;
 
+        #period;
+
+        kb_data = 0;
+
+        #period;
+         //parity and stop
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+
+        //0xF0, 11 bit long
+         #period;
+
+        kb_data = 0;
+        #period;
+         //payload
+        kb_data = 1;
+        #period;
+
+
+        kb_data = 1;
+        #period;
+
+        kb_data = 1;
+
+        
+
+        #period
+          kb_data = 1;
+
+        #period;
+
+        kb_data = 0;
+
+        #period;
+
+        kb_data = 0;
+
+
+        #period;
+        kb_data = 0;
+
+        #period;
+
+        kb_data = 0;
+
+        #period;
+         //parity and stop
+        kb_data = 0;
         #period;
 
         kb_data = 0;
