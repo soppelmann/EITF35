@@ -37,7 +37,7 @@ module keyboard_ctrl
         state <= next_state;
      end
 
-   always @(state, counter, valid_code, valid_counter)
+   always @(state, counter, valid_code)
      begin
         if (valid_code)begin
            case(state)
