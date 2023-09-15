@@ -20,7 +20,8 @@ reg [17:0] counter;
         scanCodes <= 0;
         counter <= 0;
         seg_counter <= 0;
-     end else if (counter == "11111111111111110")begin
+        code_to_display <= scanCodes[31:24];
+     end else if (counter == 4)begin
         counter <= 0;
         seg_counter <= seg_counter + 1;
      end else begin
