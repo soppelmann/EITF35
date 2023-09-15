@@ -5,7 +5,8 @@ module keyboard_top
    input        kb_clk,
    output [7:0] sc,
    output [7:0] num,
-   output [3:0] seg_en);
+   output [3:0] seg_en,
+   output [7:0] sev_seg);
 
    // set up all ports here
 
@@ -15,7 +16,7 @@ module keyboard_top
    wire       kb_clk_sync;
    wire       valid_scan_code;
    wire [7:0] code_to_display;
-   wire [7:0] sev_seg;
+   //wire [7:0] sev_seg;
    wire [3:0] binary_out;
    wire [3:0] binary_in;
 
