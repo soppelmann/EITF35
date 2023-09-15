@@ -16,6 +16,7 @@ module convert_scancode
     valid_scan_code <= 0;
     counter <= 0;
    end else if(edge_found & (counter == 12)) begin
+    // this can cause glitches because same priority
     scan_code[9:1] <= scan_code[8:0];
     scan_code[0] <= serial_data;
     scan_code_out[7:0] <= scan_code[9:2];
