@@ -10,6 +10,7 @@ reg state, next_state;
 reg [31:0] scanCodes;
 reg [1:0] seg_counter;
 reg [17:0] counter;
+reg [17:0] state_counter, valid_counter;
 //reg [3:0] seg_en;
 //reg [7:0] code_to_display;
 
@@ -22,35 +23,43 @@ reg [17:0] counter;
         seg_counter <= 0;
         code_to_display <= scanCodes[31:24];
         seg_en <= "1111";
+        state_counter <= 0;
+        valid_counter <= 0;
      end else if (counter == 4)begin
         counter <= 0;
         seg_counter <= seg_counter + 1;
+        state <= next_state;
      end else begin
         counter <= counter + 1;
         state <= next_state;
      end
 
-always @(state)
-if (valid_code)begin
-case(state)
-  0: 
-    if(scan_code_in == "11110000")begin
-      next_state <= 1;
-      
-    end else begin
-      //do nothin
-    end
-  1: 
-    if(scan_code_in == "11110000") begin
-      scanCodes = scanCodes << 8; 
-    end else if(scanCodes[31:24] == "00000000")begin 
-      scanCodes[31:24] <= scan_code_in;
-    end
-  default:begin
-    //do nothing
-  end
-endcase
-end 
+   always @(state, counter)
+   begin
+    if (valid_code)begin
+    case(state)
+      0: begin
+        if(scan_code_in == 240)begin
+          next_state <= 1;
+        end else begin
+          //do nothin
+          valid_counter <= valid_counter + 1;
+        end
+      end
+      1: begin
+        if(scan_code_in == 240) begin
+          scanCodes = scanCodes << 8; 
+        end else if(scanCodes[31:24] == 0)begin 
+          scanCodes[31:24] <= scan_code_in;
+        end
+      end
+      default:begin
+        //do nothing
+        //valid_counter <= valid_counter + 1;
+      end
+    endcase
+   end 
+   end
 
    always @ (seg_counter)
      begin
