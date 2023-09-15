@@ -46,6 +46,47 @@ module tb_pkg;
         #period; // wait for period
         rst <= 1;
 
+        // begin sending 0 for fun
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+        #period;
+
+        kb_data = 0;
+
+
+        // start actually sending data
+
         //0xF0, 11 bit long
         #period;
 
