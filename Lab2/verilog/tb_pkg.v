@@ -1,7 +1,7 @@
 module tb_pkg;
 
    reg clk = 0;
-   reg rst = 1;
+   reg rst = 0;
    reg kb_data = 1;
    reg kb_clk = 0;
    wire [7:0] sc = 0;
@@ -20,7 +20,7 @@ module tb_pkg;
 
 
    // duration for each bit = 20 * timescale = 20 * 1 ns  = 20ns
-   localparam period = 1000;
+   localparam period = 40;
 
    always #5 clk <= !clk;
 
@@ -31,16 +31,16 @@ module tb_pkg;
 
 
         // these need to be commented out for schematics
-        //$dumpfile("test.vcd");
-        //$dumpvars(0,tb_pkg);
+        $dumpfile("test.vcd");
+        $dumpvars(0,tb_pkg);
 
         // start sending data
         // values for a and b
         kb_data = 0;
-        rst <= 1;
+        rst <= 0;
 
         #period; // wait for period
-        rst <= 0;
+        rst <= 1;
 
         #period
           kb_data = 1;
@@ -65,6 +65,6 @@ module tb_pkg;
         kb_data = 0;
 
 
-        //$finish();
+        $finish();
      end // initial begin
 endmodule

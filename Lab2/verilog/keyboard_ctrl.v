@@ -6,7 +6,7 @@ module keyboard_ctrl
  output reg[7:0] code_to_display,
  output reg [3:0] seg_en);
 
-reg [2:0] state, next_state;
+reg state, next_state;
 reg [31:0] scanCodes;
 reg [1:0] seg_counter;
 reg [17:0] counter;
@@ -40,30 +40,10 @@ case(state)
     end
   1: 
     if(scan_code_in == "11110000") begin
-      next_state <= 2;
-      scanCodes = scanCodes << 8;
-      
+      scanCodes = scanCodes << 8; 
     end else if(scanCodes[31:24] == "00000000")begin 
       scanCodes[31:24] <= scan_code_in;
     end
-  2: if(scan_code_in == "11110000") begin
-      next_state <= 3;
-      scanCodes = scanCodes << 8;
-      
-      end else if(scanCodes[31:24] == "00000000")begin 
-      scanCodes[31:24] <= scan_code_in;
-      end
-  3: if(scan_code_in == "11110000") begin
-      next_state <= 4;
-      scanCodes = scanCodes << 8;
-      end else if(scanCodes[31:24] == "00000000")begin 
-      scanCodes[31:24] <= scan_code_in;
-      end
-  4: if(scan_code_in == "11110000") begin
-      scanCodes = scanCodes << 8;
-      end else if(scanCodes[31:24] == "00000000")begin 
-      scanCodes[31:24] <= scan_code_in;
-      end
   default:begin
     //do nothing
   end
