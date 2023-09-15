@@ -17,7 +17,7 @@ module keyboard_top
    wire [7:0] code_to_display;
    wire [7:0] sev_seg;
    wire [3:0] binary_out;
-   wire [3:0] binary_num;
+   wire [3:0] binary_in;
 
 
    // connect all ports here
@@ -67,6 +67,6 @@ module keyboard_top
 
    /* keyboard_top.vhd:155:5  */
    binary_to_sg binary_to_sg_inst (
-                                   .binary_in(binary_num),
+                                   .binary_in(binary_in),
                                    .sev_seg(sev_seg));
 endmodule
