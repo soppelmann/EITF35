@@ -64,7 +64,6 @@ module keyboard_top
                                              .binary_out(binary_out));
 
 
-
    /* keyboard_top.vhd:155:5  */
    binary_to_sg binary_to_sg_inst (
                                    .binary_in(binary_in),

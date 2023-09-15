@@ -19,6 +19,10 @@ module tb_pkg;
                      );
 
 
+   // schem = 1 to generate schematics
+   localparam schem = 0;
+
+
    // duration for each bit = 20 * timescale = 20 * 1 ns  = 20ns
    localparam period = 40;
 
@@ -31,8 +35,10 @@ module tb_pkg;
 
 
         // these need to be commented out for schematics
-        $dumpfile("test.vcd");
-        $dumpvars(0,tb_pkg);
+        if (schem == 0) begin
+           $dumpfile("test.vcd");
+           $dumpvars(0,tb_pkg);
+        end
 
         // start sending data
         // values for a and b
@@ -47,7 +53,7 @@ module tb_pkg;
         kb_data = 0;
         #period;
 
-         //payload for BC
+        //payload for BC
         kb_data = 1;
         #period;
 
@@ -80,7 +86,7 @@ module tb_pkg;
 
         #period;
 
-         //parity and stop
+        //parity and stop
         kb_data = 0;
         #period;
 
@@ -94,7 +100,7 @@ module tb_pkg;
         kb_data = 0;
         #period;
 
-         //payload
+        //payload
         kb_data = 0;
         #period;
 
@@ -126,7 +132,7 @@ module tb_pkg;
         kb_data = 0;
 
         #period;
-         //parity and stop
+        //parity and stop
         kb_data = 0;
         #period;
 
@@ -134,11 +140,11 @@ module tb_pkg;
 
 
         //0xF0, 11 bit long
-         #period;
+        #period;
 
         kb_data = 0;
         #period;
-         //payload
+        //payload
         kb_data = 1;
         #period;
 
@@ -170,7 +176,7 @@ module tb_pkg;
         kb_data = 0;
 
         #period;
-         //parity and stop
+        //parity and stop
         kb_data = 0;
         #period;
 
@@ -220,7 +226,12 @@ module tb_pkg;
 
         kb_data = 0;
 
+        if (schem == 0) begin
+           $finish();
+        end
 
-        $finish();
+
+
+
      end // initial begin
 endmodule
