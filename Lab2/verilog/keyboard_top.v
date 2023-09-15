@@ -16,7 +16,6 @@ module keyboard_top
    wire       kb_clk_sync;
    wire       valid_scan_code;
    wire [7:0] code_to_display;
-   //wire [7:0] sev_seg;
    wire [3:0] binary_out;
    wire [3:0] binary_in;
 

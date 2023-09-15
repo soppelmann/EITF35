@@ -2,10 +2,6 @@ module convert_to_binary
   (input [7:0] scan_code_in,
    output reg [3:0] binary_out);
 
- //  initial
- //    begin
- //       binary_out <= 'bz;
- //    end
 
 
   /* convert_to_binary.vhd:16:17  */
@@ -23,7 +19,7 @@ module convert_to_binary
       8'h16: binary_out = 4'b0001;
       8'h45: binary_out = 4'b0000;
       default: binary_out = 4'b1010;
-    endcase // case (n25_o)
+    endcase // case (scan_code_in)
   end // always @ (scan_code_in)
 
 endmodule

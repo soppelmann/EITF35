@@ -10,7 +10,7 @@ module convert_scancode
 
    reg [3:0] counter;
 
-   always @ (posedge clk, negedge rst)
+   always @ (posedge clk or negedge rst)
    if (~rst) begin
     scan_code_out <= 0;
     valid_scan_code <= 0;

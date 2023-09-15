@@ -11,8 +11,6 @@ module keyboard_ctrl
    reg [1:0]  seg_counter;
    reg [17:0] counter;
    reg [17:0] state_counter, valid_counter;
-   //reg [3:0] seg_en;
-   //reg [7:0] code_to_display;
 
    // maybe add initial begin with rst to avoid latches
    // comment out not popular lines for a somewhat working keyboard
@@ -37,7 +35,7 @@ module keyboard_ctrl
         state <= next_state;
      end
 
-   always @(state, counter, valid_code)
+   always @(state, counter, valid_code, next_state)
      begin
         if (valid_code)begin
            case(state)
@@ -57,10 +55,10 @@ module keyboard_ctrl
                 end
              end
              default:begin
-                //do nothing
+                //do nothing, we want to reset state sometimes?
                 //valid_counter <= valid_counter + 1;
              end
-           endcase
+           endcase // case (state)
         end
      end
 
@@ -83,7 +81,12 @@ module keyboard_ctrl
              seg_en <= "0111";
              code_to_display <= scanCodes[7:0];
           end
-        endcase
+          default: begin
+             seg_en <= "0000";
+             code_to_display <= scanCodes[7:0];
+          end
+
+        endcase // case (seg_counter)
      end
 
 endmodule
