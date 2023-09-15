@@ -28,6 +28,7 @@ module convert_scancode
     scan_code[9] <= serial_data;
     scan_code_out[7:0] <= scan_code[7:0];
     next_counter <= current_counter + 1;
+    current_counter <= next_counter;
     valid_scan_code <= 0;
    end else begin
     //do nothing
