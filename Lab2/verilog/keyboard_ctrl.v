@@ -12,8 +12,11 @@ module keyboard_ctrl (
    reg [ 1:0] seg_counter;
 
 
-
-
+   // Debug variables
+   reg TEST_CTRL_1 = 0;
+   reg TEST_CTRL_2 = 0;
+   reg TEST_CTRL_3 = 0;
+   reg TEST_CTRL_4 = 0;
 
 
    // maybe add initial begin with rst to avoid latches
@@ -30,13 +33,7 @@ module keyboard_ctrl (
         seg_counter <= 0;
 
         code_to_display <= scanCodes[31:24];  //vivado hates this line
-        seg_en <= "1111";  //also not popular
-
-
-        //logic to loop through segment driver
-     end else if (seg_counter == 2'b11) begin
-        seg_counter <= 0;
-        state <= next_state;
+        seg_en <= 0;  //also not popular
 
      end else begin
         seg_counter <= seg_counter + 1;
@@ -46,7 +43,7 @@ module keyboard_ctrl (
 
 
 
-// valid code looks at something,
+   // valid code looks at something,
    always @(next_state or valid_code or negedge valid_code) begin
       if (valid_code) begin
          case (state)
@@ -54,7 +51,10 @@ module keyboard_ctrl (
               if (scan_code_in == 240) begin //next scan code will be a make code and sent to the display
                  scanCodes = scanCodes << 8;
                  next_state <= 1;
+                 TEST_CTRL_1 <= 1;
 
+              end else begin
+// do nothing
               end
            end
 
@@ -91,24 +91,25 @@ module keyboard_ctrl (
    // then flash next light
    always @(clk) begin
       case (seg_counter)
-        0: begin
-           seg_en <= "1110";
+        2'b00: begin
+           seg_en <= 4'b1110;
            code_to_display <= scanCodes[31:24];
         end
-        1: begin
-           seg_en <= "1101";
+        2'b01: begin
+           seg_en <= 4'b1101;
            code_to_display <= scanCodes[23:16];
         end
-        2: begin
-           seg_en <= "1011";
+        2'b10: begin
+           seg_en <= 4'b1011;
            code_to_display <= scanCodes[15:8];
         end
-        3: begin
-           seg_en <= "0111";
+        2'b11: begin
+           seg_en <= 4'b0111;
            code_to_display <= scanCodes[7:0];
+           seg_counter <= 4'b00;
         end
         default: begin
-           seg_en <= "0000";
+           seg_en <= 4'b0000;
            code_to_display <= scanCodes[7:0];
         end
 
