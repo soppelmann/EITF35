@@ -13,7 +13,7 @@ endif
 else ifeq ($(TARGET),arty_100)
   XDC := ${current_dir}/arty.xdc
 else ifeq ($(TARGET),nexys4ddr)
-  XDC := ${current_dir}/nexys4ddr.xdc
+  XDC := ${current_dir}/main.xdc
 else ifeq ($(TARGET),zybo)
   XDC := ${current_dir}/zybo.xdc
   SOURCES:=${current_dir}/counter_zynq.v

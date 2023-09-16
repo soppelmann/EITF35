@@ -128,7 +128,8 @@ module testbench_top();
         if (bit_index == 12 & scan_code_debug != memory[memory_index-1]) begin
             $display("Failure!");
             $display("DUT Scan code = %x is not equal to expected = %x!", scan_code_debug, memory[memory_index-1]);
-            $stop;
+           //        $finish;
+           // $stop;
         end
     end
 
