@@ -131,6 +131,12 @@ module testbench_top();
            //        $finish;
            // $stop;
         end
+        else if (bit_index == 12 & scan_code_debug == memory[memory_index-1]) begin
+            $display("Sucess!");
+            $display("DUT Scan code = %x is equal to expected = %x!", scan_code_debug, memory[memory_index-1]);
+           //        $finish;
+           // $stop;
+        end
     end
 
 endmodule
