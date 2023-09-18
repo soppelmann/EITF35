@@ -76,7 +76,7 @@ module testbench_top();
             case (state)
                 INIT:
                 begin
-                    key_all <= {1'b11, memory[memory_index], 2'b0, 1'b11, 8'hf0, 2'b0, 1'b11, memory[memory_index], 2'b0};
+                    key_all <= {1'b0, memory[memory_index], 1'b1, 2'b10, 8'hf0, 2'b11, 1'b0, memory[memory_index], 2'b11};
                     memory_index <= memory_index + 1;
                     state <= SHIFT;
                     bit_index <= 0;
@@ -102,7 +102,7 @@ module testbench_top();
                     if (clk_slow) begin
                         clk_keyboard <= 1'b1;
                         state <= SHIFT;
-                        if (bit_index == 32) begin
+                        if (bit_index == 33) begin
                             state <= INIT;
                             if (memory_index == NUM_KEYS) begin
                                 state <= FINISH;
