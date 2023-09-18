@@ -52,8 +52,16 @@ always @(posedge clk, negedge reset_n) begin
 
 end
 
-// make a loop for cycling through which letter to flash
+   // make a loop for cycling through which letter to flash
    // make a loop to match scan code to seven segment
+
+
+   always @(scan_codes) begin
+
+
+
+   end
+
 
 
    // Block to send a scancode and flash one of the lights
