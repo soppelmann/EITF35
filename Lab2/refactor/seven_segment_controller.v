@@ -7,7 +7,6 @@ module seven_segment_controller(
     output reg [7:0] seven_segment_enable
 );
 
-
 localparam SCAN_CODE_0 = 8'h45;
 localparam SCAN_CODE_1 = 8'h16;
 localparam SCAN_CODE_2 = 8'h1e;
@@ -33,6 +32,58 @@ localparam SEVEN_SEGMENT_9 = 8'b1001_0000;
 localparam SEVEN_SEGMENT_F = 8'b1000_1110;
 localparam SEVEN_SEGMENT_EMPTY = 8'b1111_1111;
 
+
+   reg [1:0] seg_counter;
+   reg [4:0] seg_en;
+
+
+always @(posedge clk, negedge reset_n) begin
+
+   if(~reset_n) begin
+      seg_en <= 0;
+      seg_counter <= 0;
+
+
+   end else begin
+      seg_counter <= seg_counter + 1;
+
+   end // else: !if(~reset_n)
+
+
+end
+
+// make a loop for cycling through which letter to flash
+   // make a loop to match scan code to seven segment
+
+
+   // Block to send a scancode and flash one of the lights
+   // then flash next light
+   always @(clk) begin
+      case (seg_counter)
+        2'b00: begin
+           seg_en <= 4'b1110;
+           seven_segment_number <= scan_codes[31:24];
+        end
+        2'b01: begin
+           seg_en <= 4'b1101;
+           seven_segment_number <= scan_codes[23:16];
+        end
+        2'b10: begin
+           seg_en <= 4'b1011;
+           seven_segment_number <= scan_codes[15:8];
+        end
+        2'b11: begin
+           seg_en <= 4'b0111;
+           seven_segment_number <= scan_codes[7:0];
+           seg_counter <= 2'b00;
+        end
+        default: begin
+           seg_en <= 4'b0000;
+           seven_segment_number <= scan_codes[7:0];
+        end
+
+      endcase  // case (seg_counter)
+   end
 
 
 

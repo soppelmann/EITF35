@@ -76,7 +76,7 @@ module testbench_top();
             case (state)
                 INIT:
                 begin
-                    key_all <= {1'b0, memory[memory_index], 1'b1, 2'b10, 8'hf0, 2'b11, 1'b0, memory[memory_index], 2'b11};
+                    key_all <= {1'b1, memory[memory_index], 2'b00, 1'b1, 8'hf0, 2'b00, 1'b1, memory[memory_index], 2'b00};
                     memory_index <= memory_index + 1;
                     state <= SHIFT;
                     bit_index <= 0;
@@ -125,13 +125,13 @@ module testbench_top();
 
     always @(posedge clk_keyboard)
     begin
-        if (bit_index == 12 & scan_code_debug != memory[memory_index-1]) begin
+        if (bit_index == 10 & scan_code_debug != memory[memory_index-1]) begin
             $display("Failure!");
             $display("DUT Scan code = %x is not equal to expected = %x!", scan_code_debug, memory[memory_index-1]);
            //        $finish;
            // $stop;
         end
-        else if (bit_index == 12 & scan_code_debug == memory[memory_index-1]) begin
+        else if (bit_index == 10 & scan_code_debug == memory[memory_index-1]) begin
             $display("Sucess!");
             $display("DUT Scan code = %x is equal to expected = %x!", scan_code_debug, memory[memory_index-1]);
            //        $finish;

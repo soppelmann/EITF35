@@ -18,6 +18,8 @@ module keyboard_controller(
    // Immediately after negedge valid_scan_code the valid scan code appears on input
    // so it looks like following
 
+   reg [8:0]  temp_code;
+
    // negedge valid_scan_code
    // scan_code == 16
    // negedge valid_scan_code
@@ -29,9 +31,9 @@ module keyboard_controller(
      // Setup if reset
      if (~reset_n) begin
         state <= 0;
-        next_state <= 0;  //not popular
+        next_state <= 0;
         scan_codes <= 0;
-
+        temp_code <= 0;
 
      end else begin
         //update state on every clock cycle
@@ -39,24 +41,30 @@ module keyboard_controller(
      end
 
    // valid code looks at something,
-   always @(posedge valid_scan_code or negedge valid_scan_code or valid_scan_code) begin
-
-      if (valid_scan_code) begin
+   always @(negedge valid_scan_code) begin
+      if (~valid_scan_code) begin
          case (state)
-
            2'b00: begin // we dont enter this state because we reach it one clk cycle too early
-              if (scan_code == 8'h0F) begin //next scan code will be a make code and sent to the display
-                 next_state <= 1;
+              scan_codes = scan_codes << 8;
+              next_state = 2'b01;
+              temp_code = scan_code;
+           end
 
+           2'b01: begin
+           if (scan_code == 8'hF0)
+             //scan_codes = scan_codes << 8;
+              scan_codes[7:0] <= temp_code;
+             next_state <= 2'b10;
+           end
+
+           2'b10: begin
+              if (scan_code == temp_code) begin
+              next_state <= 2'b00;
               end else begin
-
-              end
+                 next_state <= 2'b00;
+                 end
            end
 
-           2'b01: begin //only enter here if prev scan code was 240 == break
-              scan_codes[7:0] <= scan_codes;
-              next_state <= 0;
-           end
 
          endcase  // case (state)
       end  // if (valid_code)
