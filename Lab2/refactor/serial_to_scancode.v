@@ -14,7 +14,7 @@ reg [3:0] next_counter = 4'b0000;
 always @(posedge clk or negedge reset_n) begin
     if (~reset_n) begin
         counter <= 4'b0000;
-       scan_code <= 0;
+       //scan_code <= 0;
 
     end else if (sample_ready) begin
         counter <= next_counter;

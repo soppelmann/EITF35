@@ -20,20 +20,13 @@ module keyboard_controller(
 
    reg [8:0]  temp_code;
 
-   // negedge valid_scan_code
-   // scan_code == 16
-   // negedge valid_scan_code
-   // scan_code == F0
-   // negedge valid_scan_code
-   // scan_code == 16
-
    always @(posedge clk, negedge reset_n)
      // Setup if reset
      if (~reset_n) begin
         state <= 0;
         next_state <= 0;
         scan_codes <= 0;
-        temp_code <= 0;
+        //temp_code <= 0;
 
      end else begin
         //update state on every clock cycle
@@ -52,7 +45,6 @@ module keyboard_controller(
 
            2'b01: begin
            if (scan_code == 8'hF0)
-             //scan_codes = scan_codes << 8;
               scan_codes[7:0] <= temp_code;
              next_state <= 2'b10;
            end
