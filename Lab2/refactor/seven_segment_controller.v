@@ -7,8 +7,6 @@ module seven_segment_controller(
     output reg [7:0] seven_segment_enable
 );
 
-
-
    reg [1:0] seg_counter;
    reg [7:0] single_scan_code;
    localparam shifter = 8;
