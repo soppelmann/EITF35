@@ -18,7 +18,6 @@ module keyboard_top(
     wire [31:0] scan_codes;
 
 
-   //Implemented
     synchronizer kb_clk_synchronizer(
         .clk(clk),
         .reset_n(reset_n),
@@ -33,7 +32,6 @@ module keyboard_top(
         .synched(keyboard_data_synched)
     );
 
-   //Implemented
     falling_edge_detector kb_clk_edge_detector(
         .clk(clk),
         .reset_n(reset_n),
@@ -66,6 +64,7 @@ module keyboard_top(
         .seven_segment_enable(seven_segment_enable)
     );
 
+   // change this one to valid_scancode or whatever to check functionality between blocks
     assign led_scancode_debug = scan_code;
 
 endmodule

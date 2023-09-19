@@ -18,7 +18,7 @@ module keyboard_controller(
    // Immediately after negedge valid_scan_code the valid scan code appears on input
    // so it looks like following
 
-   reg [8:0]  temp_code;
+   reg [8:0]  temp_code = 0;
 
    always @(posedge clk, negedge reset_n)
      // Setup if reset
@@ -33,6 +33,7 @@ module keyboard_controller(
         state <= next_state;
      end
 
+   // Might need to change to positive, check signals
    // valid code looks at something,
    always @(negedge valid_scan_code) begin
       if (~valid_scan_code) begin
