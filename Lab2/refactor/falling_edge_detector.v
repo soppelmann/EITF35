@@ -1,21 +1,25 @@
+//mitten data stabil
+
 module falling_edge_detector(
     input clk,
     input reset_n,
     input in,
-    output reg edge_found
+    output edge_found
 );
 
    //detect a falling edge on an input
    reg in_d; //one cc delay
-
+   reg int_edge_found;
 
    always @(posedge clk or negedge reset_n)
      if(~reset_n) begin
         in_d <= 0;
      end else begin
         in_d <= in;
-        edge_found <= (~in && in_d);
+        int_edge_found <= (~in && in_d);
      end
+
+   assign edge_found = int_edge_found;
 
 
 endmodule
