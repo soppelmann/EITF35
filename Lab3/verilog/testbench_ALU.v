@@ -60,61 +60,72 @@ parameter period = 1; // Define the period value
       // *************************
       // User test data pattern
       // *************************
-      A_reg <= 8'b00000101;
-      B_reg <= 8'b00000011;
+      A_reg <= 8'b00000101; //5
+      B_reg <= 8'b00000011; //3
       FN_reg <= 4'b0000;
       #CLKT
-      A_reg <= 8'b00001001;
-      B_reg <= 8'b00000011;
+        A_reg <= 8'b00001001; //9
+      B_reg <= 8'b00000011; //3
       FN_reg <= 4'b0001;
       #CLKT
-      A_reg <= 8'b00010001;
-      B_reg <= 8'b10010001;
+        A_reg <= 8'b00010001; //17
+      B_reg <= 8'b10010001; //145
       FN_reg <= 4'b0000;
       #CLKT
-      A_reg <= 8'b10010001;
-      B_reg <= 8'b01111100;
+        A_reg <= 8'b10010001; //145
+      B_reg <= 8'b01111100; //124
       FN_reg <= 4'b0001;
       #CLKT
-      A_reg <= 8'b10010100;
-      B_reg <= 8'b11111001;
+        A_reg <= 8'b10010100; //148
+      B_reg <= 8'b11111001; //249
       FN_reg <= 4'b0100;
       #CLKT
-      A_reg <= 8'b11010101;
-      B_reg <= 8'b01101001;
+        A_reg <= 8'b11010101; //213
+      B_reg <= 8'b01101001; //105
       FN_reg <= 4'b0100;
       #CLKT
-      A_reg <= 8'b00100011;
-      B_reg <= 8'b01100011;
+        A_reg <= 8'b00100011; //35
+      B_reg <= 8'b01100011; //35
       FN_reg <= 4'b0100;
       #CLKT
-      A_reg <= 8'b11110010;
-      B_reg <= 8'b01101000;
+        A_reg <= 8'b11110010; //242
+      B_reg <= 8'b01101000; //104
       FN_reg <= 4'b0100;
       #CLKT
-      A_reg <= 8'b00110001;
-      B_reg <= 8'b00101101;
+        A_reg <= 8'b00110001; //49
+      B_reg <= 8'b00101101; //45
       FN_reg <= 4'b0100;
       #CLKT
-      A_reg <= 8'b01010101;
-      B_reg <= 8'b00100100;
+        A_reg <= 8'b01010101; //85
+      B_reg <= 8'b00100100; //36
       FN_reg <= 4'b0100;
       #CLKT
-      A_reg <= 8'b00000000; // Invalid input command
+        A_reg <= 8'b00000000; // Invalid input command
       B_reg <= 8'b00000000; // Invalid input command
       FN_reg <= 4'b1111;    // Invalid input command
       #CLKT
 
-
-      assign A = A_reg;
+        // The following operations are performed
+        // Pass A
+        // Pass B
+        // Pass A
+        // Pass B
+        // Pass unsigned A + B
+        // Pass unsigned A - B
+        // Pass unsigned A - B
+        // Pass unsigned A + B
+        // Pass unsigned A - B
+        // Pass unsigned max(A,
+        // Pass signed A + B
+        // Pass signed A - B
+        // Pass signed max(A, B)
+        // Invalid input command
+        assign A = A_reg;
       assign B = B_reg;
       assign FN = FN_reg;
 
-
-
-
       $display("@%0d: TEST PASSED", $time);
       $finish;
-   end
+   end // initial begin
 
 endmodule
