@@ -1,4 +1,4 @@
-module reg_update (
+module reg_updater (
                    input        clk,
                    input        rst_n,
                    input [1:0]  reg_ctrl,
