@@ -50,6 +50,40 @@ module tb_ALU_ctrl () ;
       // User test data pattern
       // *************************
 
+      rst_n <= 0;
+      #CLKT;
+      rst_n <= 1;
+      #1;
+      enter <= 1;
+      #CLKT;
+      enter <= 0;
+      #CLKT;
+      enter <= 1;
+      #CLKT;
+      enter <= 0;
+      #CLKT;
+      enter <= 1;
+      #CLKT;
+      enter <= 0;
+      #CLKT;
+      sign <= 1;
+      #CLKT;
+      sign <= 0;
+      #CLKT;
+      enter <= 1;
+      #CLKT;
+      enter <= 0;
+      #CLKT;
+      enter <= 1;
+      #CLKT;
+      enter <= 0;
+      #CLKT;
+      enter <= 1;
+      #CLKT;
+      enter <= 0;
+      #CLKT;
+
+
 
 
       $display("@%0d: TEST PASSED", $time);
