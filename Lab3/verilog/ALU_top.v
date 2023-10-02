@@ -1,6 +1,6 @@
 module ALU_top(
                input        clk,
-               input        reset_n,
+               input        rst_n,
                input        b_enter,
                input        b_sign,
                input [7:0]  sw_in,
@@ -9,7 +9,7 @@ module ALU_top(
                );
 
 
-
+   // .modport(topport)
    debouncer enter_debouncer(
                              .clk(clk),
                              .rst_n(rst_n),
@@ -17,6 +17,12 @@ module ALU_top(
                              .button_out(sev_seg)
                              );
 
+   debouncer sign_debouncer(
+                             .clk(clk),
+                             .rst_n(rst_n),
+                             .button_in(b_sign),
+                             .button_out(anode)
+                             );
 
 
 
