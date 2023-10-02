@@ -14,14 +14,12 @@ module tb_ALU_ctrl () ;
 
    // TODO: Init during declaration (before simulation time 0) to avoid race conditions
    /* DUT Inputs */
-   reg         clk   = 0; // To I_ALU_CTRL of ALU_ctrl.v
    reg         enter = 0; // To I_ALU_CTRL of ALU_ctrl.v
-   reg         rst_n = 0; // To I_ALU_CTRL of ALU_ctrl.v
    reg         sign  = 0; // To I_ALU_CTRL of ALU_ctrl.v
 
    /* DUT Outputs */
-   reg [3:0]   func;       // From I_ALU_CTRL of ALU_ctrl.v
-   reg [1:0]   reg_ctrl;   // From I_ALU_CTRL of ALU_ctrl.v
+   wire [3:0]   func;       // From I_ALU_CTRL of ALU_ctrl.v
+   wire [1:0]   reg_ctrl;   // From I_ALU_CTRL of ALU_ctrl.v
 
 
    // System Clock

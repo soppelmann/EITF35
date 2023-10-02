@@ -15,7 +15,7 @@ module ALU_top(
    wire d_sign;
    wire w_sign;
    wire w_overflow;
-   wire w_bcd_digit;
+   wire [9:0] w_bcd_digit;
    wire [1:0] w_reg_ctrl;
    wire [3:0] w_func;
    wire [7:0] w_result;

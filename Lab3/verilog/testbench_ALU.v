@@ -19,9 +19,9 @@ module tb_ALU () ;
    reg [3:0]   FN    = 0; // To I_ALU of ALU.v
 
    /* DUT Outputs */
-   reg         overflow;   // From I_ALU of ALU.v
-   reg [7:0]   result;     // From I_ALU of ALU.v
-   reg         sign;       // From I_ALU of ALU.v
+   wire         overflow;   // From I_ALU of ALU.v
+   wire [7:0]   result;     // From I_ALU of ALU.v
+   wire         sign;       // From I_ALU of ALU.v
 
 
 
