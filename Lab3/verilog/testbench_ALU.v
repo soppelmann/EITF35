@@ -6,6 +6,7 @@ module tb_ALU () ;
 
 
    localparam  CLKT  = 10; // 100 MHz, 10ns
+   localparam  period  = 40; // 20 MHz, 40ns
 
    // DUT instance parameters
 
@@ -59,47 +60,47 @@ module tb_ALU () ;
       A_reg <= 8'b00000101; //5
       B_reg <= 8'b00000011; //3
       FN_reg <= 4'b0000;
-      #CLKT;
+      #period;
       A_reg <= 8'b00001001; //9
       B_reg <= 8'b00000011; //3
       FN_reg <= 4'b0001;
-      #CLKT;
+      #period;
       A_reg <= 8'b00010001; //17
       B_reg <= 8'b10010001; //145
       FN_reg <= 4'b0000;
-      #CLKT;
+      #period;
       A_reg <= 8'b10010001; //145
       B_reg <= 8'b01111100; //124
       FN_reg <= 4'b0001;
-      #CLKT;
+      #period;
       A_reg <= 8'b10010100; //148
       B_reg <= 8'b11111001; //249
       FN_reg <= 4'b0100;
-      #CLKT;
+      #period;
       A_reg <= 8'b11010101; //213
       B_reg <= 8'b01101001; //105
       FN_reg <= 4'b0100;
-      #CLKT;
+      #period;
       A_reg <= 8'b00100011; //35
       B_reg <= 8'b01100011; //35
       FN_reg <= 4'b0100;
-      #CLKT;
+      #period;
       A_reg <= 8'b11110010; //242
       B_reg <= 8'b01101000; //104
       FN_reg <= 4'b0100;
-      #CLKT;
+      #period;
       A_reg <= 8'b00110001; //49
       B_reg <= 8'b00101101; //45
       FN_reg <= 4'b0100;
-      #CLKT;
+      #period;
       A_reg <= 8'b01010101; //85
       B_reg <= 8'b00100100; //36
       FN_reg <= 4'b0100;
-      #CLKT;
+      #period;
       A_reg <= 8'b00000000; // Invalid input command
       B_reg <= 8'b00000000; // Invalid input command
       FN_reg <= 4'b1111;    // Invalid input command
-      #CLKT;
+      #period;
 
       // The following operations are performed
       // Pass A
@@ -120,7 +121,7 @@ module tb_ALU () ;
       assign B = B_reg;
       assign FN = FN_reg;
 
-      $display("@%0d: TEST PASSED", $time);
+      $display("@%0d: ALU TEST PASSED", $time);
       $finish;
    end // initial begin
 

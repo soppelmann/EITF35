@@ -1,5 +1,5 @@
 $date
-	Mon Oct  2 18:47:19 2023
+	Mon Oct  2 20:00:00 2023
 $end
 $version
 	Icarus Verilog
@@ -12,180 +12,500 @@ $var wire 1 ! overflow $end
 $var wire 8 " result [7:0] $end
 $var wire 1 # sign $end
 $var parameter 32 $ CLKT $end
-$var reg 8 % A [7:0] $end
-$var reg 8 & A_reg [7:0] $end
-$var reg 8 ' B [7:0] $end
-$var reg 8 ( B_reg [7:0] $end
-$var reg 4 ) FN [3:0] $end
-$var reg 4 * FN_reg [3:0] $end
-$var reg 1 + clk $end
+$var parameter 32 % period $end
+$var reg 8 & A [7:0] $end
+$var reg 8 ' A_reg [7:0] $end
+$var reg 8 ( B [7:0] $end
+$var reg 8 ) B_reg [7:0] $end
+$var reg 4 * FN [3:0] $end
+$var reg 4 + FN_reg [3:0] $end
+$var reg 1 , clk $end
 $scope module I_ALU $end
-$var wire 8 , A [7:0] $end
-$var wire 8 - B [7:0] $end
-$var wire 4 . FN [3:0] $end
+$var wire 8 - A [7:0] $end
+$var wire 8 . B [7:0] $end
+$var wire 4 / FN [3:0] $end
 $var wire 1 ! overflow $end
-$var wire 8 / result [7:0] $end
+$var wire 8 0 result [7:0] $end
 $var wire 1 # sign $end
 $upscope $end
 $upscope $end
 $scope module tb_ALU_ctrl $end
-$var wire 4 0 func [3:0] $end
-$var wire 2 1 reg_ctrl [1:0] $end
-$var parameter 32 2 CLKT $end
-$var reg 1 3 clk $end
-$var reg 1 4 enter $end
-$var reg 1 5 rst_n $end
-$var reg 1 6 sign $end
+$var wire 4 1 func [3:0] $end
+$var wire 2 2 reg_ctrl [1:0] $end
+$var parameter 32 3 CLKT $end
+$var parameter 32 4 period $end
+$var reg 1 5 clk $end
+$var reg 1 6 enter $end
+$var reg 1 7 rst_n $end
+$var reg 1 8 sign $end
 $scope module I_ALU_CTRL $end
-$var wire 1 3 clk $end
-$var wire 1 4 enter $end
-$var wire 4 7 func [3:0] $end
-$var wire 2 8 reg_ctrl [1:0] $end
-$var wire 1 5 rst_n $end
-$var wire 1 6 sign $end
+$var wire 1 5 clk $end
+$var wire 1 6 enter $end
+$var wire 4 9 func [3:0] $end
+$var wire 2 : reg_ctrl [1:0] $end
+$var wire 1 7 rst_n $end
+$var wire 1 8 sign $end
+$upscope $end
+$upscope $end
+$scope module tb_binary_to_bcd $end
+$var wire 10 ; bcd_out [9:0] $end
+$var parameter 32 < CLKT $end
+$var parameter 32 = period $end
+$var reg 1 > Clk $end
+$var reg 1 ? Rst_n $end
+$var reg 8 @ binary_in [7:0] $end
+$scope module I_BINARY_TO_BCD $end
+$var wire 8 A binary_in [7:0] $end
+$var wire 10 B bcd_out [9:0] $end
+$var reg 4 C i [3:0] $end
+$var reg 12 D reg_bcd_out [11:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
-b1010 2
+b101000 =
+b1010 <
+b101000 4
+b1010 3
+b101000 %
 b1010 $
 $end
 #0
 $dumpvars
-bz 8
-bz 7
+b0 D
+b1000 C
+b0 B
+b0 A
+b0 @
+1?
+0>
+b0 ;
+bz :
+bz 9
+08
+07
 06
 05
-04
-03
+bz 2
 bz 1
 bz 0
-bz /
+b0 /
 b0 .
 b0 -
-b0 ,
-0+
+0,
+b0 +
 b0 *
-b0 )
-b11 (
-b0 '
-b101 &
-b0 %
+b11 )
+b0 (
+b101 '
+b0 &
 z#
 bz "
 z!
 $end
 #5000
-13
-1+
-#10000
+1>
 15
-b1 *
-b1001 &
-03
-0+
-#11000
-14
+1,
+#10000
+0>
+05
+0,
 #15000
-13
-1+
+1>
+15
+1,
 #20000
-b0 *
-b10010001 (
-b10001 &
-03
-0+
-#21000
-04
+0>
+05
+0,
 #25000
-13
-1+
+1>
+15
+1,
 #30000
-b1 *
-b1111100 (
-b10010001 &
-03
-0+
-#31000
-14
+0>
+05
+0,
 #35000
-13
-1+
+1>
+15
+1,
 #40000
-b100 *
-b11111001 (
-b10010100 &
-03
-0+
+b1001001001 ;
+b1001001001 B
+b1001001001 D
+b1000 C
+b11111001 @
+b11111001 A
+17
+b1 +
+b1001 '
+0>
+05
+0,
 #41000
-04
-#45000
-13
-1+
-#50000
-b1101001 (
-b11010101 &
-03
-0+
-#51000
-14
-#55000
-13
-1+
-#60000
-b1100011 (
-b100011 &
-03
-0+
-#61000
-04
-#65000
-13
-1+
-#70000
-b1101000 (
-b11110010 &
-03
-0+
-#71000
 16
+#45000
+1>
+15
+1,
+#50000
+0>
+05
+0,
+#55000
+1>
+15
+1,
+#60000
+0>
+05
+0,
+#65000
+1>
+15
+1,
+#70000
+0>
+05
+0,
 #75000
-13
-1+
+1>
+15
+1,
 #80000
-b101101 (
-b110001 &
-03
-0+
+b0 +
+b10010001 )
+b10001 '
+0>
+05
+0,
 #81000
 06
 #85000
-13
-1+
+1>
+15
+1,
 #90000
-b100100 (
-b1010101 &
-03
-0+
-#91000
-14
+0>
+05
+0,
 #95000
-13
-1+
+1>
+15
+1,
 #100000
-b1111 *
-b0 (
-b0 &
-03
-0+
-#101000
-04
+0>
+05
+0,
 #105000
-13
-1+
+1>
+15
+1,
 #110000
-03
-0+
-b1111 )
-b1111 .
+0>
+05
+0,
+#115000
+1>
+15
+1,
+#120000
+b1 +
+b1111100 )
+b10010001 '
+0>
+05
+0,
+#121000
+16
+#125000
+1>
+15
+1,
+#130000
+0>
+05
+0,
+#135000
+1>
+15
+1,
+#140000
+0>
+05
+0,
+#145000
+1>
+15
+1,
+#150000
+0>
+05
+0,
+#155000
+1>
+15
+1,
+#160000
+b100 +
+b11111001 )
+b10010100 '
+0>
+05
+0,
+#161000
+06
+#165000
+1>
+15
+1,
+#170000
+0>
+05
+0,
+#175000
+1>
+15
+1,
+#180000
+0>
+05
+0,
+#185000
+1>
+15
+1,
+#190000
+0>
+05
+0,
+#195000
+1>
+15
+1,
+#200000
+b1101001 )
+b11010101 '
+0>
+05
+0,
+#201000
+16
+#205000
+1>
+15
+1,
+#210000
+0>
+05
+0,
+#215000
+1>
+15
+1,
+#220000
+0>
+05
+0,
+#225000
+1>
+15
+1,
+#230000
+0>
+05
+0,
+#235000
+1>
+15
+1,
+#240000
+b1100011 )
+b100011 '
+0>
+05
+0,
+#241000
+06
+#245000
+1>
+15
+1,
+#250000
+0>
+05
+0,
+#255000
+1>
+15
+1,
+#260000
+0>
+05
+0,
+#265000
+1>
+15
+1,
+#270000
+0>
+05
+0,
+#275000
+1>
+15
+1,
+#280000
+b1101000 )
+b11110010 '
+0>
+05
+0,
+#281000
+18
+#285000
+1>
+15
+1,
+#290000
+0>
+05
+0,
+#295000
+1>
+15
+1,
+#300000
+0>
+05
+0,
+#305000
+1>
+15
+1,
+#310000
+0>
+05
+0,
+#315000
+1>
+15
+1,
+#320000
+b101101 )
+b110001 '
+0>
+05
+0,
+#321000
+08
+#325000
+1>
+15
+1,
+#330000
+0>
+05
+0,
+#335000
+1>
+15
+1,
+#340000
+0>
+05
+0,
+#345000
+1>
+15
+1,
+#350000
+0>
+05
+0,
+#355000
+1>
+15
+1,
+#360000
+b100100 )
+b1010101 '
+0>
+05
+0,
+#361000
+16
+#365000
+1>
+15
+1,
+#370000
+0>
+05
+0,
+#375000
+1>
+15
+1,
+#380000
+0>
+05
+0,
+#385000
+1>
+15
+1,
+#390000
+0>
+05
+0,
+#395000
+1>
+15
+1,
+#400000
+b1111 +
+b0 )
+b0 '
+0>
+05
+0,
+#401000
+06
+#405000
+1>
+15
+1,
+#410000
+0>
+05
+0,
+#415000
+1>
+15
+1,
+#420000
+0>
+05
+0,
+#425000
+1>
+15
+1,
+#430000
+0>
+05
+0,
+#435000
+1>
+15
+1,
+#440000
+0>
+05
+0,
+b1111 *
+b1111 /

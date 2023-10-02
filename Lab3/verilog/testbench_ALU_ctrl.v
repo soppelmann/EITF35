@@ -5,6 +5,7 @@ module tb_ALU_ctrl () ;
 
 
    localparam  CLKT  = 10; // 100 MHz, 10ns
+   localparam  period  = 40; // 20 MHz, 40ns
 
    // DUT instance parameters
 
@@ -49,37 +50,37 @@ module tb_ALU_ctrl () ;
       // *************************
 
       rst_n <= 0;
-      #CLKT;
+      #period;
       rst_n <= 1;
       #1;
       enter <= 1;
-      #CLKT;
+      #period;
       enter <= 0;
-      #CLKT;
+      #period;
       enter <= 1;
-      #CLKT;
+      #period;
       enter <= 0;
-      #CLKT;
+      #period;
       enter <= 1;
-      #CLKT;
+      #period;
       enter <= 0;
-      #CLKT;
+      #period;
       sign <= 1;
-      #CLKT;
+      #period;
       sign <= 0;
-      #CLKT;
+      #period;
       enter <= 1;
-      #CLKT;
+      #period;
       enter <= 0;
-      #CLKT;
+      #period;
       enter <= 1;
-      #CLKT;
+      #period;
       enter <= 0;
-      #CLKT;
+      #period;
       enter <= 1;
-      #CLKT;
+      #period;
       enter <= 0;
-      #CLKT;
+      #period;
 
 
 
