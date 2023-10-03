@@ -25,19 +25,19 @@ module ALU (
           4'b0011: // Unsigned A - B
             ALU_Result = A - B;
           4'b0100: // Unsigned A mod 3
-            ALU_Result = A << 1;
+            ALU_Result = A % 3;
           // maybe the sign output is just to say if positive or negative for the signed case
           4'b1010: // Signed A + B
             ALU_Result = $signed(A) + $signed(B);
           4'b1011: // Signed A - B
             ALU_Result = $signed(A) - $signed(B);
           4'b1100: // Signed A mod 3
-            ALU_Result = A << 1;
+            ALU_Result = $signed(A) % 3;
           default: ALU_Result = A + B ;
         endcase // case (FN)
 
         // $signed might not be needed
-        if (FN == 4'b1010 || FN == 4'b1011 || FN == 4'b1100 && $signed(ALU_Result) < 0) begin
+        if ((FN == 4'b1010 || FN == 4'b1011 || FN == 4'b1100) && $signed(ALU_Result) < 0) begin
            pn <= 1;
         end else begin
            pn <= 0;
