@@ -9,8 +9,6 @@ module ALU_top(
                );
 
 
-   //TODO: currently wrong sizes
-
    wire d_enter;
    wire d_sign;
    wire w_sign;
@@ -25,16 +23,20 @@ module ALU_top(
 
    // .modport(topport)
    debouncer enter_debouncer(
+                             // Inputs
                              .clk        (clk),
                              .rst_n      (rst_n),
                              .button_in  (b_enter),
+                             // Outputs
                              .button_out (d_enter)
                              );
 
    debouncer sign_debouncer(
+                            // Inputs
                             .clk        (clk),
                             .rst_n      (rst_n),
                             .button_in  (b_sign),
+                            // Outputs
                             .button_out (d_sign)
                             );
 
@@ -54,20 +56,21 @@ module ALU_top(
                              .clk      (clk),
                              .rst_n    (rst_n),
                              .reg_ctrl (w_reg_ctrl),
+                             .sw_input (sw_in),
                              // Outputs
                              .A        (A),
                              .B        (B)
                              );
 
    ALU I_ALU (
-              // Outputs
-              .result   (w_result),
-              .overflow (w_overflow),
-              .sign     (w_sign),
               // Inputs
               .A        (A),
               .B        (B),
-              .FN       (w_func)
+              .FN       (w_func),
+              // Outputs
+              .result   (w_result),
+              .overflow (w_overflow),
+              .sign     (w_sign)
               );
 
 
