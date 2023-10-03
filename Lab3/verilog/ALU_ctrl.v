@@ -10,7 +10,7 @@ module ALU_ctrl (
     reg [3:0] state, next_state;
     reg [1:0] i_reg, next_i_reg;
 
-   always @(posedge clk) begin
+   always @(posedge clk or negedge rst_n) begin
       if(~rst_n) begin
          state <= 0;
          i_reg <= 0;

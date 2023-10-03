@@ -6,13 +6,16 @@ module debouncer (
                   );
 
    reg [19:0] count; //Range to count 20ms with 50 MHz clock
+   //reg [1:0] count; //For simulation! actually just ignore debouncer for simulation retard!
    reg        button_tmp;
    reg        reg_button_out;
 
 
-   always @(posedge clk) begin
+   always @(posedge clk or negedge rst_n) begin
       if (!rst_n) begin
          /*AUTORESET*/
+         button_tmp <= 0;
+         reg_button_out <= 0;
          count <= 0;
       end
       else begin
