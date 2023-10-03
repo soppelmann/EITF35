@@ -50,15 +50,36 @@ module sc_to_seven_seg ( input [3:0] BCD_digit, output wire [7:0] led_out);
     reg [7:0] int_seven_segment_number;
 
     //shift this in every clk
-    always @* begin
-          case(BCD_digit)
-            //create mapping here for BCD_digits to numbers
+   always @* begin
+      case(BCD_digit)
+        //create mapping here for BCD_digits to numbers
+        4'b0000 : int_seven_segment_number = 8'b11000000; //0
 
-            default : int_seven_segment_number = 8'b10000110; //error
+        4'b0001 :  int_seven_segment_number = 8'b11111001; //1
+
+        4'b0010:  int_seven_segment_number = 8'b10100100; //2
+
+        4'b0011:  int_seven_segment_number = 8'b10110000; //...
+
+        4'b0100:  int_seven_segment_number = 8'b10011001;
+
+        4'b0101:  int_seven_segment_number = 8'b10010010;
+
+        4'b0110: int_seven_segment_number = 8'b10000010;
+
+        4'b0111: int_seven_segment_number = 8'b11111000;
+
+        4'b1000: int_seven_segment_number = 8'b10000000;
+
+        4'b1001: int_seven_segment_number = 8'b10010000; //9
+
+        4'b1111 : int_seven_segment_number = 8'b11111111; //off
+
+        default : int_seven_segment_number = 8'b10000110; //error
 
 
-    endcase
-    end
+      endcase
+   end
 
     assign led_out = int_seven_segment_number;
 
