@@ -9,38 +9,38 @@ module seven_segment_driver (
                              output [7:0] segment //number to show
                              );
 
-    reg [7:0]      segment_state;
-    reg [31:0]     segment_counter;
-    reg [3:0]     routed_vals;
-    wire [7:0]     led_out;
+   reg [7:0]      segment_state;
+   reg [31:0]     segment_counter;
+   reg [3:0]      routed_vals;
+   wire [7:0]     led_out;
 
-    sc_to_seven_seg my_converter ( .BCD_digit(routed_vals), .led_out(led_out));
-    assign segment = led_out; //siffran som ska lysa
-    assign digit_anode = ~segment_state; //segment to enable
+   sc_to_seven_seg my_converter ( .BCD_digit(routed_vals), .led_out(led_out));
+   assign segment = led_out; //siffran som ska lysa
+   assign digit_anode = ~segment_state; //segment to enable
 
+   //Also add sign for sign and overflow led
+   always @* begin
+      case(segment_state)
+        8'b0000_0001:   routed_vals = BCD_digit[3:0]; //ental
+        8'b0000_0010:   routed_vals = BCD_digit[7:4]; //tiotal
+        8'b0000_0100:   routed_vals = {2'b00 , BCD_digit[9:8]}; //hundratal
+        default:        routed_vals = BCD_digit[7:0];
+      endcase
+   end
 
-    always @* begin
-        case(segment_state)
-            8'b0000_0001:   routed_vals = BCD_digit[3:0]; //ental
-            8'b0000_0010:   routed_vals = BCD_digit[7:4]; //tiotal
-            8'b0000_0100:   routed_vals = {2'b00 , BCD_digit[9:8]}; //hundratal
-            default:        routed_vals = BCD_digit[7:0];
-        endcase
-    end
-
-    always @(posedge clk)begin
-        if (~rst_n)begin
-            segment_state <= 8'b0000_0001;
-            segment_counter <= 32'b0;
-        end else begin
-            if (segment_counter == 32'd100_000)begin
-                segment_counter <= 32'd0;
-                segment_state <= {segment_state[7:4],segment_state[2:0],segment_state[3]};
-            end else begin
-                segment_counter <= segment_counter +1;
-            end
-        end
-    end
+   always @(posedge clk or negedge rst_n)begin
+      if (~rst_n)begin
+         segment_state <= 8'b0000_0001;
+         segment_counter <= 32'b0;
+      end else begin
+         if (segment_counter == 32'd100_000)begin
+            segment_counter <= 32'd0;
+            segment_state <= {segment_state[7:4],segment_state[2:0],segment_state[3]};
+         end else begin
+            segment_counter <= segment_counter +1;
+         end
+      end
+   end
 
 endmodule //seven_seg_controller
 
