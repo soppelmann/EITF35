@@ -86,7 +86,7 @@ module tb_ALU_ctrl () ;
 
 
       $display("@%0d: TEST PASSED", $time);
-      $finish;
+      //$finish;
    end
 
 endmodule

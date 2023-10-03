@@ -6,14 +6,12 @@ module tb_reg_updater () ;
    localparam  CLKT  = 10; // 100 MHz, 10ns
    localparam  period  = 40; // 20 MHz, 40ns
 
-    // TODO: INIT after (verilog-auto)!!
     // DUT instance parameters
 
     // Non-auto signals
    reg       clk      = 1'b0;
    reg       rst_n    = 1'b1;
 
-    // TODO: Init during declaration (before simulation time 0) to avoid race conditions
     /* DUT Inputs */
    reg [1:0] reg_ctrl = 0; // To I_REG_UPDATER of reg_updater.v
    reg [7:0] sw_input = 0; // To I_REG_UPDATER of reg_updater.v
@@ -62,7 +60,7 @@ module tb_reg_updater () ;
       #period;
 
       $display("@%0d: reg_updater TEST PASSED", $time);
-      $finish;
+      //$finish;
    end
 
 endmodule

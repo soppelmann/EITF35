@@ -11,6 +11,7 @@ module reg_updater (
 
 
    // If changed to clk we can change the value of B during computations, cool?
+   // Unsure about this
    always @(reg_ctrl or rst_n /* or sw_input */) begin
       if (!rst_n) begin
          r_A <= 8'b0;

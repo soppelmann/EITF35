@@ -111,7 +111,7 @@ module tb_ALU () ;
       // Invalid input command
 
       $display("@%0d: ALU TEST PASSED", $time);
-      $finish;
+      //$finish;
    end // initial begin
 
 endmodule

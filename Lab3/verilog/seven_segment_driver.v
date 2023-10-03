@@ -2,7 +2,7 @@
 module seven_segment_driver (
                              input        clk,
                              input        rst_n,
-                             input [9:0]  BCD_digit,
+                             input [9:0]  BCD_digit, //this is basically 3 digits
                              input        sign,
                              input        overflow,
                              output [7:0] digit_anode, //segment enable
