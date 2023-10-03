@@ -5,16 +5,9 @@ module seven_segment_driver (
                              input [9:0]  BCD_digit,
                              input        sign,
                              input        overflow,
-                             output [7:0] digit_anode,
-                             output [6:0] segment
+                             output [7:0] digit_anode, //segment enable
+                             output [7:0] segment //number to show
                              );
-
-//module seven_segment_controller(input               clk,
-//                            input               reset_n,
-//                            input [31:0]        BCD_digit,
-//                            output logic[7:0]   cat_out,
-//                            output logic[7:0]   an_out
-//    );
 
     reg [7:0]      segment_state;
     reg [31:0]     segment_counter;
@@ -22,8 +15,8 @@ module seven_segment_driver (
     wire [7:0]     led_out;
 
     sc_to_seven_seg my_converter ( .BCD_digit(routed_vals), .led_out(led_out));
-    assign cat_out = led_out; //siffran som ska lysa
-    assign an_out = ~segment_state; //segment to enable
+    assign segment = led_out; //siffran som ska lysa
+    assign digit_anode = ~segment_state; //segment to enable
 
 
     always @* begin
@@ -36,7 +29,7 @@ module seven_segment_driver (
     end
 
     always @(posedge clk)begin
-        if (~reset_n)begin
+        if (~rst_n)begin
             segment_state <= 8'b0000_0001;
             segment_counter <= 32'b0;
         end else begin
@@ -52,45 +45,14 @@ module seven_segment_driver (
 endmodule //seven_seg_controller
 
 
-module sc_to_seven_seg ( input [7:0] BCD_digit, output wire [7:0] led_out);
+module sc_to_seven_seg ( input [3:0] BCD_digit, output wire [7:0] led_out);
 
     reg [7:0] int_seven_segment_number;
 
-   // make equivalent for BCD
     //shift this in every clk
     always @* begin
           case(BCD_digit)
-            8'h45 : int_seven_segment_number = 8'b11000000; //0
-
-            8'h16 :  int_seven_segment_number = 8'b11111001; //1
-
-            8'h1e:  int_seven_segment_number = 8'b10100100; //2
-
-            8'h26:  int_seven_segment_number = 8'b10110000; //...
-
-            8'h25:  int_seven_segment_number = 8'b10011001;
-
-            8'h2e:  int_seven_segment_number = 8'b10010010;
-
-            8'h36: int_seven_segment_number = 8'b10000010;
-
-            8'h3d: int_seven_segment_number = 8'b11111000;
-
-            8'h3e: int_seven_segment_number = 8'b10000000;
-
-            8'h46: int_seven_segment_number = 8'b10010000; //9
-
-            8'h1C: int_seven_segment_number = 8'b10001000; //A
-
-            8'h32: int_seven_segment_number = 8'b10000011; //B
-
-            8'h21: int_seven_segment_number = 8'b11000110; //C
-
-            8'h33: int_seven_segment_number = 8'b10001001; //H
-
-            8'h44: int_seven_segment_number = 8'b11000000; //O
-
-            8'h0 : int_seven_segment_number = 8'b11111111; //off
+            //create mapping here for BCD_digits to numbers
 
             default : int_seven_segment_number = 8'b10000110; //error
 

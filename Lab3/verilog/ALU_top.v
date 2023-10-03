@@ -4,7 +4,7 @@ module ALU_top(
                input        b_enter,
                input        b_sign,
                input [7:0]  sw_in,
-               output [6:0] sev_seg,
+               output [7:0] sev_seg,
                output [7:0] anode
                );
 
