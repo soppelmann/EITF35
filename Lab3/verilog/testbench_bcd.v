@@ -62,7 +62,7 @@ module tb_binary_to_bcd () ;
 
 
 
-      $display("@%0d: TEST PASSED", $time);
+      $display("@%0d: BCD TEST PASSED", $time);
       //$finish;
    end
 

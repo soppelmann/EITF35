@@ -20,7 +20,8 @@ module ALU_ctrl (
       end
    end
 
-   always @(posedge enter or posedge sign) begin
+   //yosys really doesnt like posedge enter due to async reset on next_state?
+   always @(enter or sign) begin
       next_state = state;
       next_i_reg = i_reg;
 
@@ -58,6 +59,9 @@ module ALU_ctrl (
            default: next_state = 4'b0000;
          endcase
 
+      end else begin
+         next_state = state;
+         next_i_reg = i_reg;
       end
    end
 

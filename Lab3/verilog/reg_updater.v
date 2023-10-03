@@ -10,7 +10,8 @@ module reg_updater (
    reg [7:0] r_A,r_B;
 
 
-   always @(posedge clk or negedge rst_n) begin
+   // If changed to clk we can change the value of B during computations, cool?
+   always @(reg_ctrl or rst_n /* or sw_input */) begin
       if (!rst_n) begin
          r_A <= 8'b0;
          r_B <= 8'b0;
@@ -18,7 +19,7 @@ module reg_updater (
          case (reg_ctrl)
            2'b01: r_A <= sw_input;
            2'b10: r_B <= sw_input;
-           default: // Handle any other values of reg_ctrl
+           default: // Handle any other values of reg_ctrl, maybe add in alu_ctrl to use this
              begin
                 r_A <= 8'b0;
                 r_B <= 8'b0;
