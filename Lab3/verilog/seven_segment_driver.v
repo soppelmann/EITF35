@@ -91,7 +91,7 @@ module sc_to_seven_seg ( input [3:0] BCD_digit, output wire [7:0] led_out);
 
         4'b1111 : int_seven_segment_number = 8'b11111111; //off
 
-        default : int_seven_segment_number = 8'b10000110; //error
+        default : int_seven_segment_number = 8'b10001110; //overflow
 
 
       endcase

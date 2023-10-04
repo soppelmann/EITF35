@@ -11,8 +11,8 @@ module ALU (
    reg [8:0] ALU_Result; // reg???
    wire [8:0] tmp;
    reg        pn;
+   //reg r_overflow;
 
-   // mod 3 missing
    always @(*)
      begin
         case(FN)
@@ -27,21 +27,56 @@ module ALU (
           4'b0100: // Unsigned A mod 3
             ALU_Result = A % 3;
           // maybe the sign output is just to say if positive or negative for the signed case
-          4'b1010:
-            // Signed A + B
-            ALU_Result = ~(A + B) + 1;
-          4'b1011: // Signed A - B
-            ALU_Result = ~(A-B) + 1;
-          4'b1100: // Signed A mod 3
-            ALU_Result = ~(A % 3) + 1;
+          4'b1010: begin
+              // Signed A + B 
+              if($signed(A+B) < 0) begin
+                    ALU_Result = ~(A + B) + 1;
+                    pn <= 1;
+                end else begin 
+                    ALU_Result = A + B;
+                    pn <= 0;
+                end
+              end
+          4'b1011: begin
+                // Signed A - B 
+                if($signed(A-B) < 0) begin
+                      ALU_Result = ~(A - B) + 1;
+                      pn <= 1;
+                  end else begin 
+                      ALU_Result = A - B;
+                      pn <= 0;
+                  end
+                end
+          4'b1100: begin
+              // Signed A + B 
+              if($signed(A) < 0) begin
+                    ALU_Result = ((A % 3) + 2) % 3;
+                    pn <= 0;
+                end else begin 
+                    ALU_Result = A % 3;
+                    pn <= 0;
+                end
+              end
           default: ALU_Result = A + B ;
         endcase // case (FN)
 
         // $signed might not be needed
-        if ((FN == 4'b1010 || FN == 4'b1011 || FN == 4'b1100) && $signed(~ALU_Result + 1) < 0) begin
-           pn <= 1;
-        end else begin
+        if (!(FN == 4'b1010 || FN == 4'b1011 || FN == 4'b1100)) begin
            pn <= 0;
+        end else if (FN == 4'b1010) begin 
+            
+            if(($signed(A) < 0 && $signed(B) < 0 && $signed(ALU_Result) > 0) || ($signed(A) > 0 && $signed(B) > 0 && $signed(ALU_Result) < 0)) begin
+                ALU_Result[8] = 1;
+            end else begin
+                ALU_Result[8] = 0;
+            end
+        end else if (FN == 4'b1011) begin 
+            
+            if(($signed(A) < 0 && $signed(B) > 0 && $signed(ALU_Result) > 0) || ($signed(A) > 0 && $signed(B) < 0 && $signed(ALU_Result) < 0)) begin
+                ALU_Result[8] = 1;
+            end else begin
+                ALU_Result[8] = 0;
+            end
         end
      end
 
@@ -54,3 +89,5 @@ module ALU (
 
 
 endmodule
+
+//write embedded module here as in sevensegmentdriver

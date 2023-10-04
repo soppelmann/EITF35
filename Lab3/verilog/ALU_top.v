@@ -96,7 +96,7 @@ module ALU_top(
                                                 );
 
 
-   assign led_scancode_debug = w_result;
+assign led_scancode_debug = w_func;
 
 
 
