@@ -8,11 +8,11 @@ module ALU (
             );
 
 
-   reg [7:0] ALU_Result;
+   reg [8:0] ALU_Result; // reg???
    wire [8:0] tmp;
    reg        pn;
 
-// mod 3 missing
+   // mod 3 missing
    always @(*)
      begin
         case(FN)
@@ -27,26 +27,27 @@ module ALU (
           4'b0100: // Unsigned A mod 3
             ALU_Result = A % 3;
           // maybe the sign output is just to say if positive or negative for the signed case
-          4'b1010: // Signed A + B
-            ALU_Result = $signed(A) + $signed(B);
+          4'b1010:
+            // Signed A + B
+            ALU_Result = ~(A + B) + 1;
           4'b1011: // Signed A - B
-            ALU_Result = $signed(A) - $signed(B);
+            ALU_Result = ~(A-B) + 1;
           4'b1100: // Signed A mod 3
-            ALU_Result = $signed(A) % 3;
+            ALU_Result = ~(A % 3) + 1;
           default: ALU_Result = A + B ;
         endcase // case (FN)
 
         // $signed might not be needed
-        if ((FN == 4'b1010 || FN == 4'b1011 || FN == 4'b1100) && $signed(ALU_Result) < 0) begin
+        if ((FN == 4'b1010 || FN == 4'b1011 || FN == 4'b1100) && $signed(~ALU_Result + 1) < 0) begin
            pn <= 1;
         end else begin
            pn <= 0;
         end
      end
 
-   assign result = ALU_Result;
+   assign result = ALU_Result[7:0];
    assign tmp = {1'b0,A} + {1'b0,B};
-   assign overflow = tmp[8]; // Carryout flag
+   assign overflow = ALU_Result[8]; // Carryout flag
    assign sign = pn;
 
 

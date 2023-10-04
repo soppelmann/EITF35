@@ -24,6 +24,20 @@ module seven_segment_driver (
         8'b0000_0001:   routed_vals = BCD_digit[3:0]; //ental
         8'b0000_0010:   routed_vals = BCD_digit[7:4]; //tiotal
         8'b0000_0100:   routed_vals = {2'b00 , BCD_digit[9:8]}; //hundratal
+        8'b0000_1000:   begin
+            if(sign) begin
+                routed_vals = 4'b1011;
+            end else begin
+                routed_vals = 4'b1111;
+            end
+        end
+        8'b0001_0000:   begin
+                    if(overflow) begin
+                        routed_vals = 4'b1100;
+                    end else begin
+                        routed_vals = 4'b1111;
+                    end
+                end
         default:        routed_vals = BCD_digit[7:0];
       endcase
    end
@@ -35,7 +49,7 @@ module seven_segment_driver (
       end else begin
          if (segment_counter == 32'd100_000)begin
             segment_counter <= 32'd0;
-            segment_state <= {segment_state[7:4],segment_state[2:0],segment_state[3]};
+            segment_state <= {segment_state[7:5],segment_state[3:0],segment_state[4]};
          end else begin
             segment_counter <= segment_counter +1;
          end
@@ -72,6 +86,8 @@ module sc_to_seven_seg ( input [3:0] BCD_digit, output wire [7:0] led_out);
         4'b1000: int_seven_segment_number = 8'b10000000;
 
         4'b1001: int_seven_segment_number = 8'b10010000; //9
+        
+        4'b1011: int_seven_segment_number = 8'b10111111; //-
 
         4'b1111 : int_seven_segment_number = 8'b11111111; //off
 
