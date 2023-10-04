@@ -44,8 +44,8 @@ module ALU_top(
                        // Inputs
                        .clk      (clk),
                        .rst_n    (rst_n),
-                       .enter    (b_enter), //d_enter for IRL
-                       .sign     (b_sign), //b_enter for SIM
+                       .enter    (d_enter), //d_enter for IRL
+                       .sign     (d_sign), //b_enter for SIM
                        // Outputs
                        .func     (w_func),
                        .reg_ctrl (w_reg_ctrl)

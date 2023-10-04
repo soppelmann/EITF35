@@ -4,6 +4,7 @@
 module tb_ALU_top () ;
 
    localparam  CLKT  = 10; // 100 MHz, 10ns
+   //localparam  CLKT  = 2; // 100 MHz, 10ns
    localparam  period  = 40; // 20 MHz, 40ns
 
     // DUT instance parameters
