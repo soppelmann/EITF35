@@ -28,15 +28,18 @@ module ALU_ctrl (
       if (enter) begin
 
          case (state)
+           //Input to reg A
            4'b0000: begin
               next_state = 4'b0001;
               next_i_reg = 2'b01;
            end
+           //Input to reg B
            4'b0001: begin
               next_state = 4'b0010;
               next_i_reg = 2'b10;
            end
-           4'b0010: next_state = 4'b0011;
+           //cycle through states, staying in same sign
+           4'b0010: next_state = 4'b0011; 
            4'b0011: next_state = 4'b0100;
            4'b0100: next_state = 4'b0010;
            4'b1010: next_state = 4'b1011;
@@ -48,8 +51,10 @@ module ALU_ctrl (
       end else if (sign) begin
 
          case (state)
+            //In the input states, do nothing
            4'b0000: next_state = 4'b0000;
            4'b0001: next_state = 4'b0001;
+           //Switch between signstates
            4'b0010: next_state = 4'b1010;
            4'b0011: next_state = 4'b1011;
            4'b0100: next_state = 4'b1100;
