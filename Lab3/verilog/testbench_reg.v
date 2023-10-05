@@ -57,9 +57,9 @@ module tb_reg_updater () ;
       #period;
 
             sw_input <= 8'b0000_1100;
-      
+
             #period;
-      
+
             reg_ctrl <= 2'b11;
 
       #period;
@@ -74,7 +74,7 @@ module tb_reg_updater () ;
 
 
       $display("@%0d: reg_updater TEST PASSED", $time);
-      $finish;
+      //$finish;
    end
 
 endmodule
