@@ -12,8 +12,11 @@ module ALU (
    wire [8:0] tmp;
    reg        pn;
    wire [7:0] A_mod3;
+   reg [8:0]  A_sign;
 
-   mod3_alg my_mod3 ( .mod_in(A), .sign_in(sign), .mod_out(A_mod3));
+   // Sign comes from cases, now we want to check sign of A, i.e.  bit 7 if signed
+   // We can perform this check inside mod3 module by check bit 7 when its a signed operation
+   mod3_alg my_mod3 ( .mod_in(A), .sign_in(FN[3]), .mod_out(A_mod3));
 
    always @(*)
      begin
@@ -31,7 +34,8 @@ module ALU (
           // maybe the sign output is just to say if positive or negative for the signed case
           4'b1010: begin
              // Signed A + B
-             if($signed(A+B) < 0) begin
+             A_sign = A + B;
+             if(A_sign[7] == 1) begin
                 ALU_Result = ~(A + B) + 1;
                 pn <= 1;
              end else begin
@@ -41,8 +45,9 @@ module ALU (
           end
           4'b1011: begin
              // Signed A - B
-             if($signed(A-B) < 0) begin //check bit
-                ALU_Result = ~(A - B) + 1;
+             A_sign = A - B;
+             if(A_sign[7] == 1) begin
+                ALU_Result = ~(A - B) + 1; //we conv to unsigned before bcd and save p/n in pn.
                 pn <= 1;
              end else begin
                 ALU_Result = A - B;
@@ -50,31 +55,22 @@ module ALU (
              end
           end
           4'b1100: begin
-             // Signed A + B
-             if($signed(A) < 0) begin
-                ALU_Result = ((A_mod3) + 2) % 3;
-                pn <= 0;
-             end else begin
+             // A mod3
                 ALU_Result = A_mod3;
-                pn <= 0;
-             end
           end
           default: ALU_Result = A + B ;
         endcase // case (FN)
 
-        // $signed might not be needed
-        if (!(FN == 4'b1010 || FN == 4'b1011 || FN == 4'b1100)) begin
+        if (!(FN[3] == 1)) begin
            pn <= 0;
         end else if (FN == 4'b1010) begin
-
-           if(($signed(A) < 0 && $signed(B) < 0 && $signed(ALU_Result) > 0) || ($signed(A) > 0 && $signed(B) > 0 && $signed(ALU_Result) < 0)) begin
+           if((A[7] == 1 && B[7] == 1 && ALU_Result[8] == 0) || (A[7] == 0 && B[7] == 0 && ALU_Result[8] == 1)) begin
               ALU_Result[8] = 1;
            end else begin
               ALU_Result[8] = 0;
            end
         end else if (FN == 4'b1011) begin
-
-           if(($signed(A) < 0 && $signed(B) > 0 && $signed(ALU_Result) > 0) || ($signed(A) > 0 && $signed(B) < 0 && $signed(ALU_Result) < 0)) begin
+           if((A[7] == 1 && B[7] == 0 && ALU_Result[8] == 0) || (A[7] == 0 && B[7] == 1 && ALU_Result[8] == 1)) begin
               ALU_Result[8] = 1;
            end else begin
               ALU_Result[8] = 0;
@@ -97,7 +93,7 @@ module mod3_alg (
    output wire [7:0] mod_out
 );
 
-reg [7:0] mod3;
+reg [7:0] mod3 = 14;
 reg [3:0]  i;
 
 
