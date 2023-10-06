@@ -13,7 +13,7 @@ module tb_reg_updater () ;
    reg       rst_n    = 1'b1;
 
     /* DUT Inputs */
-   reg [1:0] reg_ctrl = 0; // To I_REG_UPDATER of reg_updater.v
+   reg [1:0] reg_ctrl = 2'b00; // To I_REG_UPDATER of reg_updater.v
    reg [7:0] sw_input = 0; // To I_REG_UPDATER of reg_updater.v
 
     /* DUT Outputs */
@@ -45,19 +45,33 @@ module tb_reg_updater () ;
       sw_input <= 8'b0000_0011;
       #period;
 
+      reg_ctrl <= 2'b00;
+      #period;
+
+      //sw_input <= 8'b0000_1100;
+
+      #period;
+
       reg_ctrl <= 2'b01;
-      #period;
-
-      sw_input <= 8'b0000_1100;
 
       #period;
 
-      reg_ctrl <= 2'b10;
+            sw_input <= 8'b0000_1100;
+
+            #period;
+
+            reg_ctrl <= 2'b11;
 
       #period;
 
+            sw_input <= 8'b0001_1110;
 
       #period;
+
+            sw_input <= 8'b0101_1110;
+
+      #period;
+
 
       $display("@%0d: reg_updater TEST PASSED", $time);
       //$finish;

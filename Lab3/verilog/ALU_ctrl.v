@@ -9,11 +9,12 @@ module ALU_ctrl (
 
     reg [3:0] state, next_state;
     reg [1:0] i_reg, next_i_reg;
+    reg last_enter, last_sign;
 
    always @(posedge clk or negedge rst_n) begin
       if(~rst_n) begin
          state <= 0;
-         i_reg <= 0;
+         i_reg <= 2'b00;
       end else begin
          state <= next_state;
          i_reg <= next_i_reg;
@@ -24,8 +25,9 @@ module ALU_ctrl (
    always @(enter or sign) begin
       next_state = state;
       next_i_reg = i_reg;
+      
 
-      if (enter) begin
+      if (enter /*&& ~last_enter*/) begin
 
          case (state)
            //Input to reg A
@@ -36,7 +38,7 @@ module ALU_ctrl (
            //Input to reg B
            4'b0001: begin
               next_state = 4'b0010;
-              next_i_reg = 2'b10;
+              next_i_reg = 2'b11;
            end
            //cycle through states, staying in same sign
            4'b0010: next_state = 4'b0011; 
@@ -48,7 +50,7 @@ module ALU_ctrl (
            default: next_state = 4'b0000;
          endcase
 
-      end else if (sign) begin
+      end else if (sign /*&& ~last_sign*/) begin
 
          case (state)
             //In the input states, do nothing
@@ -68,6 +70,9 @@ module ALU_ctrl (
          next_state = state;
          next_i_reg = i_reg;
       end
+      
+      last_enter = enter;
+      last_sign = sign;
    end
 
     assign func = state;

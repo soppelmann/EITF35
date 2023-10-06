@@ -5,7 +5,8 @@ module ALU_top(
                input        b_sign,
                input [7:0]  sw_in,
                output [7:0] sev_seg,
-               output [7:0] anode
+               output [7:0] anode,
+               output [7:0] led_scancode_debug
                );
 
 
@@ -95,6 +96,7 @@ module ALU_top(
                                                 );
 
 
+assign led_scancode_debug = w_func;
 
 
 
