@@ -1,3 +1,6 @@
+`timescale 1ns / 1ps
+
+
 module keyboard_top(
     input clk,
     input reset_n,
@@ -16,6 +19,7 @@ module keyboard_top(
     wire valid_scan_code;
     wire [7:0] scan_code;
     wire [31:0] scan_codes;
+    wire [7:0] curr_state;
 
 
     synchronizer kb_clk_synchronizer(
@@ -53,18 +57,19 @@ module keyboard_top(
         .reset_n(reset_n),
         .valid_scan_code(valid_scan_code),
         .scan_code(scan_code),
-        .scan_codes(scan_codes)
+        .scan_codes(scan_codes),
+        .curr_state(curr_state)
     );
 
     seven_segment_controller inst_seven_segment_controller(
         .clk(clk),
         .reset_n(reset_n),
-        .scan_codes(scan_codes),
-        .seven_segment_number(seven_segment_number),
-        .seven_segment_enable(seven_segment_enable)
+        .val_in(scan_codes),
+        .cat_out(seven_segment_number),
+        .an_out(seven_segment_enable)
     );
 
    // change this one to valid_scancode or whatever to check functionality between blocks
-    assign led_scancode_debug = scan_code;
+    assign led_scancode_debug = scan_codes;
 
 endmodule

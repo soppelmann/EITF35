@@ -3,42 +3,54 @@ module serial_to_scancode(
     input reset_n,
     input sample_ready,
     input serial_data,
-    output reg valid_scan_code,
+    output wire valid_scan_code,
     output [7:0] scan_code
 );
 
+   reg [9:0] scan_code_int;
+   reg [7:0] scan_code_d;
+   reg [7:0] scan_code_dd; 
 
-reg [3:0] counter = 4'b0000;
-reg [3:0] next_counter = 4'b0000;
-reg [7:0] int_scan_code;
+   reg [3:0] counter;
+   reg valid_scan_code_d;
+   reg valid_scan_code_dd;
 
-always @(posedge clk or negedge reset_n) begin
-    if (~reset_n) begin
-        counter <= 4'b0000;
-       int_scan_code <= 0;
+   always @ (posedge clk)begin
+   
+   //if(valid_scan_code_dd == 1)begin 
+   // valid_scan_code_dd <= 0;
+   //end
+   
+   if (~reset_n) begin
+    scan_code_int <= 0;
+    scan_code_d <= 0;
+    scan_code_dd <= 0;
+    counter <= 0;
+    //valid_scan_code_d <= 0;
+   end else if(sample_ready && (counter == 10)) begin
+    scan_code_int[7:0] <= scan_code_int[8:1];
+    scan_code_int[8:0] <= scan_code_int[9:1];
+    scan_code_int[9] <= serial_data;
+    counter <= 0;
+    valid_scan_code_d <= 1;
+    valid_scan_code_dd <= valid_scan_code_d;
+    
 
-    end else if (sample_ready) begin
-        counter <= next_counter;
-    end
+   end else if (sample_ready) begin
+    scan_code_int[7:0] <= scan_code_int[8:1];
+    scan_code_int[8:0] <= scan_code_int[9:1];
+    scan_code_int[9] <= serial_data;
+    counter <= counter + 1;
+    valid_scan_code_d <= 0;
+    valid_scan_code_dd <= valid_scan_code_d;
+   end else begin
+    //do nothing
+   end
+   scan_code_d <= scan_code_int[7:0]; 
+   scan_code_dd <= scan_code_d;
 end
 
-always @(counter) begin
-    int_scan_code[6:0] <= int_scan_code[7:1];
-    int_scan_code[7] <= serial_data;
-    valid_scan_code = 1'b0;
-    if (counter == 4'b1010) begin
-        valid_scan_code = 1'b1;
-    end
-end
-
-always @(counter) begin
-    next_counter = counter + 1;
-    if (counter == 4'b1010) begin
-        next_counter = 4'b0000;
-    end
-end
-
-assign scan_code = int_scan_code;
-
+assign scan_code = scan_code_dd;
+assign valid_scan_code = valid_scan_code_d;
 
 endmodule

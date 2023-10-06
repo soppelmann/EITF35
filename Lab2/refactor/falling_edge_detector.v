@@ -1,3 +1,6 @@
+`timescale 1ns / 1ps
+
+
 //mitten data stabil
 
 module falling_edge_detector(
@@ -11,9 +14,10 @@ module falling_edge_detector(
    reg in_d; //one cc delay
    reg int_edge_found;
 
-   always @(posedge clk or negedge reset_n)
+   always @(posedge clk)
      if(~reset_n) begin
         in_d <= 0;
+        int_edge_found <= 0;
      end else begin
         in_d <= in;
         int_edge_found <= (~in && in_d);

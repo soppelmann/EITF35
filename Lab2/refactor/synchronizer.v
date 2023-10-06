@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module synchronizer(
     input clk,
     input reset_n,
