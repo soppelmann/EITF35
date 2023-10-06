@@ -46,10 +46,6 @@ module tb_ALU () ;
       $dumpfile("test.vcd");
       $dumpvars(0,tb_ALU);
 
-      //0100 unsigned mod 3
-      //1100 signed mod 3
-
-
       // *************************
       // User test data pattern
       // *************************
@@ -73,25 +69,25 @@ module tb_ALU () ;
       B <= 8'b11111001; //249
       FN <= 4'b1010;
       #period;
-      A <= 8'b1111_1110; //213
-      B <= 8'b0000_0111; //105
+      A <= 8'b11010101; //213
+      B <= 8'b01101001; //105
       FN <= 4'b1011;
       #period;
       A <= 8'b00100011; //35
       B <= 8'b01100011; //35
       FN <= 4'b0010;
       #period;
-      A <= 8'b0000_0010; //2
+      A <= 8'b11110010; //242
       B <= 8'b01101000; //104
       FN <= 4'b0100;
       #period;
-      A <= 8'b0000_0011; //3
+      A <= 8'b00110001; //49
       B <= 8'b00101101; //45
       FN <= 4'b0100;
       #period;
       A <= 8'b01010101; //85
       B <= 8'b00100100; //36
-      FN <= 4'b1100;
+      FN <= 4'b0100;
       #period;
       A <= 8'b00000000; // Invalid input command
       B <= 8'b00000000; // Invalid input command
@@ -115,7 +111,7 @@ module tb_ALU () ;
       // Invalid input command
 
       $display("@%0d: ALU TEST PASSED", $time);
-      $finish;
+      //$finish;
    end // initial begin
 
 endmodule
