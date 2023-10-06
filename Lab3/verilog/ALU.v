@@ -57,6 +57,7 @@ module ALU (
           4'b1100: begin
              // A mod3
                 ALU_Result = A_mod3;
+                pn <= 0;
           end
           default: ALU_Result = A + B ;
         endcase // case (FN)
