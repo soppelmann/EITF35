@@ -94,7 +94,26 @@ module mod3_alg (
 );
 
 reg [7:0] mod3 = 14;
-reg [3:0]  i;
+reg [3:0] i;
+
+always @(*) begin
+   
+  if(sign_in && mod_in[7]) begin
+   i = mod_in[0] + 2*mod_in[1] + mod_in[2] + 2*mod_in[3] + mod_in[4] + 2*mod_in[5] + mod_in[6] + 2*mod_in[7] + 2;
+   if (i < 3) mod3 = i;
+   else if (i < 6) mod3 = i - 3;
+   else if (i < 9) mod3 = i - 6;
+   else if (i < 12) mod3 = i - 9;
+   else mod3 = i - 12;
+  end else begin
+   i = mod_in[0] + 2*mod_in[1] + mod_in[2] + 2*mod_in[3] + mod_in[4] + 2*mod_in[5] + mod_in[6] + 2*mod_in[7];
+   if (i < 3) mod3 = i;
+   else if (i < 6) mod3 = i - 3;
+   else if (i < 9) mod3 = i - 6;
+   else if (i < 12) mod3 = i - 9;
+   else mod3 = i - 12;
+  end
+end
 
 
    assign mod_out = mod3;
