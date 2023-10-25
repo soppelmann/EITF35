@@ -211,21 +211,13 @@ end
 
 
 
-    // Movement handling for player
-    // debounce buttons
-    logic sig_right, sig_left, sig_up;
-    debouncer deb_right (.clk(clk_pix), .in(btn_right), .out(sig_right), .ondn(), .onup());
-    debouncer deb_left (.clk(clk_pix), .in(btn_left), .out(sig_left), .ondn(), .onup());
-    debouncer deb_up (.clk(clk_pix), .in(btn_up), .out(sig_up), .ondn(), .onup());
-
-
     reg flying;
     logic signed [CORDW-1:0] sprx, spry;  // draw sprite at position (sprx,spry)
 
 
     always_ff @(posedge clk_pix) begin
 
-    if(sig_up && spry == 245) begin
+    if(btn_up && spry == 245) begin
         flying <= 1;
     end else if (spry < 180) begin
         flying <= 0;
@@ -238,8 +230,8 @@ end
             if (dead) spry <= spry + 1;
             else if (sprx < -SPR_DRAWW) sprx <= H_RES;  // move back to right of screen
             else if (sprx > H_RES) sprx <= -SPR_DRAWW;  // move back to right of screen
-            else if(sig_right) sprx <= sprx + SPR_SPX;
-            else if(sig_left) sprx <= sprx - SPR_SPX;
+            else if(btn_right) sprx <= sprx + SPR_SPX;
+            else if(btn_left) sprx <= sprx - SPR_SPX;
             else sprx <= sprx;  // otherwise keep moving left
 
             if(flying == 1) begin
