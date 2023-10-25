@@ -1,8 +1,0 @@
-// Project F: Hardware Sprites - Hedgehog 32x20 pixels with 4-bit indexed colour
-// Adapted from Team17 game Superfrog for demonstration purposes
-// Learn more at https://projectf.io/posts/hardware-sprites/
-
-9 9 9 9
-9 9 9 0
-9 9 0 0
-9 9 9 0

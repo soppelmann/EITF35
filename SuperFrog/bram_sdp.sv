@@ -1,8 +1,4 @@
-// Project F Library - Simple Dual-Port Block RAM
-// (C)2022 Will Green, Open source hardware released under the MIT License
-// Learn more at https://projectf.io
 
-`default_nettype none
 `timescale 1ns / 1ps
 
 module bram_sdp #(

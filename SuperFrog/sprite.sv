@@ -1,8 +1,4 @@
-// Project F: Hardware Sprites - Sprite with Scaling
-// (C)2023 Will Green, open source hardware released under the MIT License
-// Learn more at https://projectf.io/posts/hardware-sprites/
 
-`default_nettype none
 `timescale 1ns / 1ps
 
 module sprite #(

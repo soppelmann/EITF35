@@ -1,8 +1,4 @@
-// Project F Library - Simple Colour Lookup Table
-// (C)2022 Will Green, open source hardware released under the MIT License
-// Learn more at https://projectf.io
 
-`default_nettype none
 `timescale 1ns / 1ps
 
 module clut_simple #(
