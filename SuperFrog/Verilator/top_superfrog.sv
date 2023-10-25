@@ -11,19 +11,10 @@ module top_superfrog (
     output      logic [7:0] sdl_r,  // 8-bit red
     output      logic [7:0] sdl_g,  // 8-bit green
     output      logic [7:0] sdl_b,   // 8-bit blue
-
-//    input  wire logic clk_100m,     // 100 MHz clock
     input  wire logic btn_rst_n,    // reset button
     input wire logic btn_right,
     input wire logic btn_left,
     input wire logic btn_up
-//    output      logic vga_hsync,    // horizontal sync
-//    output      logic vga_vsync,    // vertical sync
-//    output      logic [3:0] vga_r,  // 4-bit VGA red
-//    output      logic [3:0] vga_g,  // 4-bit VGA green
-//    output      logic [3:0] vga_b,   // 4-bit VGA blue
-//    output logic [7:0] sev_seg,
-//    output logic [7:0] anode
     );
 
     // Header file with our localparams
@@ -336,9 +327,6 @@ end
     // paint colour: sprite or background
     logic [CHANW-1:0] paint_r, paint_g, paint_b;
 
-    // Early attempt, creates visual glitches when overlapping!
-    //always_comb {paint_r, paint_g, paint_b} = (drawing_t1 || f_drawing_t1) ? f_spr_pix_colr : bg_colr;
-    //always_comb {paint_r, paint_g, paint_b} = (f_drawing_t1) ? f_spr_pix_colr : bg_colr;
 
     // Draw multiple sprites and avoid overlapping issues
     // Rewrite this one to use a for loop and a single drawing boolean like for the falling blocks
